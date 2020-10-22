@@ -1,27 +1,32 @@
 package hu.bme.jnsbbk.tasks.fragments
 
 import android.app.DatePickerDialog
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import hu.bme.jnsbbk.tasks.R
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.Task
-import hu.bme.jnsbbk.tasks.data.TaskDAO
+import hu.bme.jnsbbk.tasks.data.*
 import kotlinx.android.synthetic.main.fragment_task_details.*
 import java.time.LocalDate
 import java.util.*
 import kotlin.concurrent.thread
 
-class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
+class TaskDetailsFragment(private val fm: FragmentManager) : Fragment(R.layout.fragment_task_details) {
     private var task_id: Long? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fm = this.requireActivity().supportFragmentManager
-
+        for (edittext: View in setOf(details_category_edit, details_title_edit, details_description_edit, details_dueDate_edit)) {
+            val bg: GradientDrawable = edittext.background as GradientDrawable
+            bg.color =
+                ColorStateList.valueOf(Color.parseColor(resources.getString(0 + R.color.colorForeground)))
+        }
         setDateInputter()
 
         fm.setFragmentResultListener("populateDetails", viewLifecycleOwner) { _, bundle ->
@@ -43,7 +48,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
     private fun setDateInputter() {
         val cal: Calendar = Calendar.getInstance()
         val dateSelected = {datePicker: DatePicker, y: Int, m: Int, d: Int ->
-            details_dueDate_edit.setText(LocalDate.of(y, m, d).toString())
+            details_dueDate_edit.setText("%d-%02d-%02d".format(y, m, d))
         }
         val picker = DatePickerDialog(requireContext(), dateSelected,
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
@@ -61,14 +66,14 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
 
             val task = Task(
                 task_id = task_id,
-                category = null,
+                category = null, // TODO CATEGORY
                 dueDate = details_dueDate_edit.text.toString(),
                 title = details_title_edit.text.toString(),
                 description = details_description_edit.text.toString()
             )
 
             db.runInTransaction {
-                var exists: Boolean = false
+                var exists = false
                 if (task_id != null)
                     exists = (dao.getTask(task_id!!) != null)
                 if (exists)

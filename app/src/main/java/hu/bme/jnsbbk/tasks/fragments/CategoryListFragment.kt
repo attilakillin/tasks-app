@@ -15,7 +15,7 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = CategoryListAdapter(requireActivity(), parentFragmentManager)
+        val adapter = CategoryListAdapter(requireActivity(), childFragmentManager)
         category_recyclerview.adapter = adapter
         category_recyclerview.layoutManager = LinearLayoutManager(context)
 

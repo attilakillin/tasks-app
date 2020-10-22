@@ -3,7 +3,9 @@ package hu.bme.jnsbbk.tasks.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
@@ -24,12 +26,8 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         val view = createView()
         val builder = AlertDialog.Builder(requireContext())
             .setTitle(mode.prefix + " category") // TODO Extract string
-            .setPositiveButton("Save") { dialog: DialogInterface, _ ->
-                saveCategory(view)
-            }
-            .setNegativeButton("Cancel") { dialog: DialogInterface, _ ->
-                dialog.dismiss()
-            }
+            .setPositiveButton("Save") { _, _ -> saveCategory(view) }
+            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         builder.setView(view)
         return builder.create()
     }
@@ -40,6 +38,15 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         view.cat_editor_lightcolor.setBackgroundColor(Color.parseColor(category.color_light))
         view.cat_editor_darkcolor.setBackgroundColor(Color.parseColor(category.color_dark))
 
+        val bg: GradientDrawable = view.cat_editor_title.background as GradientDrawable
+        bg.color = ColorStateList.valueOf(Color.parseColor(resources.getString(0+R.color.colorForeground)))
+
+        initializeColorPickers(view)
+
+        return view
+    }
+
+    private fun initializeColorPickers(view: View) {
         val cp = ColorPicker(activity)
         cp.enableAutoClose()
 
@@ -62,8 +69,6 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
             }
             cp.show()
         }
-
-        return view
     }
 
     private fun saveCategory(view: View) {

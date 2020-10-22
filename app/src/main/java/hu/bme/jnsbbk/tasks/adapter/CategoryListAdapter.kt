@@ -22,7 +22,6 @@ class CategoryListAdapter(private val activity: Activity, private val fm: Fragme
     ListAdapter<Category, CategoryListAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var position: Int? = null
         var category: Category? = null
         val name = itemView.catRow_name
     }
@@ -39,10 +38,8 @@ class CategoryListAdapter(private val activity: Activity, private val fm: Fragme
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = getItem(position).copy()
 
-        holder.position = position
         holder.category = category
         holder.name.text = category.name
-        //holder.itemView.setBackgroundColor(Color.parseColor(category.color_light)) // TODO DARK THEME
 
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
         bg.color = ColorStateList.valueOf(Color.parseColor(category.color_light))

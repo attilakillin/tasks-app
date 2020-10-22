@@ -11,10 +11,12 @@
             android:id="@+id/menuItem_trash"
             android:title="Trash"/>
     </group>
+    <group android:id="@+id/menuGroup_remaining" android:checkableBehavior="single">
     <item
         android:id="@+id/navItem_categoryListFragment"
         android:title="Categories"/>
     <item
         android:id="@+id/menuItem_darkMode"
         android:title="Dark mode"/>
+    </group>
 </menu>
