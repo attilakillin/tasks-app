@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menuGroup_lists" android:checkableBehavior="single">
+        <item
+            android:id="@+id/navItem_taskPagerFragment"
+            android:title="Tasks"/>
+        <item
+            android:id="@+id/menuItem_completed"
+            android:title="Completed"/>
+        <item
+            android:id="@+id/menuItem_trash"
+            android:title="Trash"/>
+    </group>
+    <item
+        android:id="@+id/navItem_categoryListFragment"
+        android:title="Categories"/>
+    <item
+        android:id="@+id/menuItem_darkMode"
+        android:title="Dark mode"/>
+</menu>

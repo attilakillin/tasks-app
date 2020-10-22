@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navItem_taskPagerFragment">
+
+    <fragment
+        android:id="@+id/navItem_taskPagerFragment"
+        android:name="hu.bme.jnsbbk.tasks.fragments.TaskPagerFragment"
+        android:label="Tasks"/>
+    <fragment
+        android:id="@+id/navItem_categoryListFragment"
+        android:name="hu.bme.jnsbbk.tasks.fragments.CategoryListFragment"
+        android:label="Categories"/>
+</navigation>

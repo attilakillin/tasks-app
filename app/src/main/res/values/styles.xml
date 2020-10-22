@@ -1,0 +1,21 @@
+<resources>
+    <style name="TasksThemeLight" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <item name="editTextStyle">@style/TasksThemeLight.EditTextStyle</item>
+        <item name="taskListRowStyle">@style/TasksThemeLight.TaskListRowStyle</item>
+    </style>
+
+    <style name="TasksThemeLight.EditTextStyle" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/rounded_corners</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TasksThemeLight.TaskListRowStyle" parent="TasksThemeLight">
+        <item name="android:background">@drawable/rounded_corners</item>
+    </style>
+
+</resources>
