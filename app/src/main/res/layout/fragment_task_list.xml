@@ -12,6 +12,7 @@
         android:paddingTop="12dp"
         android:clipToPadding="false"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"/>
+        android:paddingEnd="12dp"
+        tools:listitem="@layout/item_task_list_row"/>
 
 </LinearLayout>

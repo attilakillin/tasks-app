@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="12dp"
     android:paddingTop="12dp">
@@ -9,12 +11,13 @@
         android:id="@+id/categories_add_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new category"/>
+        android:text="@string/add_new_category"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        tools:listitem="@layout/item_category_list_row"/>
 
 </LinearLayout>
