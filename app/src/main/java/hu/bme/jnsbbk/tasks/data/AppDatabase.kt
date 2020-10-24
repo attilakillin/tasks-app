@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Category::class, Task::class], version = 3)
+@Database(entities = [Category::class, Task::class], views = [TaskInfo::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
     abstract fun categoryDao(): CategoryDAO
+    abstract fun taskInfoDao(): TaskInfoDAO
 
     companion object {
         lateinit var INSTANCE: AppDatabase private set

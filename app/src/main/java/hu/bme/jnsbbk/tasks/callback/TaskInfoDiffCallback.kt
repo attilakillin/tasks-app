@@ -10,7 +10,7 @@ class TaskInfoDiffCallback : DiffUtil.ItemCallback<TaskInfo>() {
 
     override fun areContentsTheSame(oldItem: TaskInfo, newItem: TaskInfo): Boolean {
         return oldItem.category == newItem.category &&
-               oldItem.dueDate == newItem.dueDate &&
+               oldItem.due_date == newItem.due_date &&
                oldItem.title == newItem.title
     }
 }

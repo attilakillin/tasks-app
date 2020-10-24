@@ -1,17 +1,17 @@
 package hu.bme.jnsbbk.tasks.data
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "tasks",
         foreignKeys = [ForeignKey(
             entity = Category::class,
             parentColumns = ["cat_id"],
             childColumns = ["category_fk"],
-            onDelete = ForeignKey.CASCADE
-        )])
+            onDelete = ForeignKey.CASCADE)],
+        indices = [
+            Index(value = ["category_fk"]),
+            Index(value = ["due_date"])
+        ])
 data class Task (
     @PrimaryKey(autoGenerate = true) var task_id: Long?,
     @ColumnInfo(name = "category_fk") val category: Long?,
