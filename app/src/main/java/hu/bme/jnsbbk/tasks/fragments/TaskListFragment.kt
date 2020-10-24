@@ -1,7 +1,6 @@
 package hu.bme.jnsbbk.tasks.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -10,12 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.adapter.TaskListAdapter
 import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.Category
-import hu.bme.jnsbbk.tasks.data.Task
 import kotlinx.android.synthetic.main.fragment_task_list.*
-import java.time.LocalDate
-import java.time.Month
-import kotlin.concurrent.thread
 
 class TaskListFragment(private val fm: FragmentManager) : Fragment(R.layout.fragment_task_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +25,7 @@ class TaskListFragment(private val fm: FragmentManager) : Fragment(R.layout.frag
         list_recyclerView.layoutManager = LinearLayoutManager(context)
 
 
-        AppDatabase.getInstance(requireContext()).taskDao().getTasks().observe(viewLifecycleOwner, {
+        AppDatabase.INSTANCE.taskInfoDao().getTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
     }

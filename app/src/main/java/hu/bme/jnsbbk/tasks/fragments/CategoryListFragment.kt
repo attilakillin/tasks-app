@@ -15,11 +15,11 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = CategoryListAdapter(requireActivity(), childFragmentManager)
+        val adapter = CategoryListAdapter(childFragmentManager)
         category_recyclerview.adapter = adapter
         category_recyclerview.layoutManager = LinearLayoutManager(context)
 
-        AppDatabase.getInstance(requireContext()).categoryDao().getCategories().observe(viewLifecycleOwner, {
+        AppDatabase.INSTANCE.categoryDao().getCategories().observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
 
