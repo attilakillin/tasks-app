@@ -9,62 +9,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.TaskDetailsFragment">
 
-    <TextView
-        android:id="@+id/details_category_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Category:"
-        android:textSize="18sp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ftd_guide_vertical"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/details_dueDate_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Due date:"
-        android:textSize="18sp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ftd_guide_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/details_category_edit" />
-
-    <EditText
+    <Spinner
         android:id="@+id/details_category_edit"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1"
+        android:layout_height="0dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="4dp"
         android:textSize="16sp"
-        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_corners"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toStartOf="@+id/ftd_guide_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details_category_text"
-        tools:text="Mikro- és makroökonómia" />
+        app:layout_constraintStart_toStartOf="@id/ftd_guide_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/details_title_edit"/>
 
     <EditText
         android:id="@+id/details_dueDate_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="none"
+        android:clickable="true"
+        android:focusable="false"
         android:maxLines="1"
         android:textSize="16sp"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/ftd_guide_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/details_dueDate_text"
-        tools:text="2020-12-04" />
+        app:layout_constraintTop_toBottomOf="@+id/details_category_edit"
+        android:hint="@string/due_date" />
 
     <EditText
         android:id="@+id/details_title_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter title"
+        android:hint="@string/enter_title"
         android:inputType="text"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@id/ftd_guide_vertical"
@@ -77,7 +56,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:gravity="top"
-        android:hint="Enter description"
+        android:hint="@string/enter_description"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,10 +67,36 @@
         android:id="@+id/details_doneSave_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/save"
+        android:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Done" />
+
+    <Button
+        android:id="@+id/details_delete_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_delete_24px"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerInside"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="@id/ftd_guide_vertical"
+        app:layout_constraintTop_toTopOf="@id/details_doneSave_button"
+        app:layout_constraintBottom_toBottomOf="@id/details_doneSave_button"/>
+
+    <Button
+        android:id="@+id/details_edit_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_edit_24px"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerInside"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="@id/details_delete_button"
+        app:layout_constraintEnd_toEndOf="@id/details_delete_button"
+        app:layout_constraintBottom_toTopOf="@id/details_delete_button" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/ftd_guide_vertical"

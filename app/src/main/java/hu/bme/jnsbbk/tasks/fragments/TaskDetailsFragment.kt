@@ -1,76 +1,154 @@
 package hu.bme.jnsbbk.tasks.fragments
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import hu.bme.jnsbbk.tasks.R
+import hu.bme.jnsbbk.tasks.adapter.CategorySpinnerAdapter
 import hu.bme.jnsbbk.tasks.data.*
 import kotlinx.android.synthetic.main.fragment_task_details.*
-import java.time.LocalDate
 import java.util.*
 import kotlin.concurrent.thread
 
-class TaskDetailsFragment(private val fm: FragmentManager) : Fragment(R.layout.fragment_task_details) {
-    private var task_id: Long? = null
+class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
+    private companion object {
+        var task_id: Long? = null
+        var current_mode: Mode = Mode.EDIT
+    }
+    private lateinit var categories: List<Category>
+
+    private enum class Mode {
+        VIEW, EDIT
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        for (edittext: View in setOf(details_category_edit, details_title_edit, details_description_edit, details_dueDate_edit)) {
-            val bg: GradientDrawable = edittext.background as GradientDrawable
-            bg.color =
-                ColorStateList.valueOf(Color.parseColor(resources.getString(0 + R.color.colorForeground)))
-        }
-        setDateInputter()
+        setEditTextColors()
+        setUpCategorySelector()
+        setUpDateEditor()
+        setMode(current_mode)
+        addEditorButtonListeners()
 
-        fm.setFragmentResultListener("populateDetails", viewLifecycleOwner) { _, bundle ->
+        parentFragmentManager.setFragmentResultListener("populateDetails", viewLifecycleOwner) { _, bundle ->
             val id = bundle.get("id") as Long
-
             thread {
-                val task: Task = AppDatabase.getInstance(requireContext()).taskDao().getTask(id)!!
-                view.post { setFields(task) }
+                val task: Task = AppDatabase.INSTANCE.taskDao().getTask(id)!!
+                view.post {
+                    setMode(Mode.VIEW)
+                    setFields(task)
+                }
             }
-        }
-
-        details_doneSave_button.setOnClickListener {
-            saveTask()
-            clearFields()
-            fm.setFragmentResult("switchToList", Bundle())
         }
     }
 
-    private fun setDateInputter() {
+    private fun addEditorButtonListeners() {
+        details_delete_button.setOnClickListener {
+            val idCopy = task_id!!
+            thread {
+                AppDatabase.INSTANCE.taskDao().deleteTaskById(idCopy)
+            }
+            clearFields()
+            setMode(Mode.EDIT)
+            parentFragmentManager.setFragmentResult("switchToList", Bundle())
+        }
+        details_edit_button.setOnClickListener {
+            setMode(Mode.EDIT)
+        }
+    }
+
+    private fun setMode(mode: Mode) {
+        current_mode = mode
+        when (mode) {
+            Mode.VIEW -> {
+                enableViewsForEditing(false)
+                details_doneSave_button.text = resources.getString(R.string.done)
+                details_doneSave_button.setOnClickListener {
+                    clearFields()
+                    setMode(Mode.EDIT)
+                    parentFragmentManager.setFragmentResult("switchToList", Bundle())
+                }
+            }
+            Mode.EDIT -> {
+                enableViewsForEditing(true)
+                details_doneSave_button.text = resources.getString(R.string.save)
+                details_doneSave_button.setOnClickListener {
+                    saveTask()
+                    setMode(Mode.VIEW)
+                }
+            }
+        }
+    }
+
+    private fun enableViewsForEditing(value: Boolean) {
+        details_category_edit.isEnabled = value
+        details_dueDate_edit.isEnabled = value
+        details_title_edit.isEnabled = value
+        details_description_edit.isEnabled = value
+
+        details_delete_button.isEnabled = !value
+        details_delete_button.isVisible = !value
+
+        details_edit_button.isEnabled = !value
+        details_edit_button.isVisible = !value
+    }
+
+    private fun setUpCategorySelector() {
+        val cats = AppDatabase.INSTANCE.categoryDao().getCategories()
+        cats.observe(viewLifecycleOwner, {
+            categories = it
+            val adapter = CategorySpinnerAdapter(requireContext(), it)
+            details_category_edit.adapter = adapter
+        })
+    }
+
+    private fun setEditTextColors() {
+        for (view: View in setOf(
+            details_category_edit,
+            details_title_edit,
+            details_description_edit,
+            details_dueDate_edit
+        )) {
+            (view.background as GradientDrawable).color =
+                ColorStateList.valueOf(Color.parseColor(resources.getString(0 + R.color.colorForeground)))
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setUpDateEditor() {
         val cal: Calendar = Calendar.getInstance()
-        val dateSelected = {datePicker: DatePicker, y: Int, m: Int, d: Int ->
+        val dateSelected = { _: DatePicker, y: Int, m: Int, d: Int ->
             details_dueDate_edit.setText("%d-%02d-%02d".format(y, m, d))
         }
         val picker = DatePickerDialog(requireContext(), dateSelected,
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
         picker.datePicker.minDate = System.currentTimeMillis()
 
-        details_dueDate_edit.setOnClickListener {
-            picker.show()
-        }
+        details_dueDate_edit.setOnClickListener { picker.show() }
     }
 
     private fun saveTask() {
-        thread {
-            val db = AppDatabase.getInstance(requireContext())
-            val dao: TaskDAO = db.taskDao()
+        val task = Task(
+            task_id = task_id,
+            category = (details_category_edit.adapter as CategorySpinnerAdapter)
+                .getCategoryId(details_category_edit.selectedItemPosition),
+            dueDate = details_dueDate_edit.text.toString(),
+            title = details_title_edit.text.toString(),
+            description = details_description_edit.text.toString()
+        )
 
-            val task = Task(
-                task_id = task_id,
-                category = null, // TODO CATEGORY
-                dueDate = details_dueDate_edit.text.toString(),
-                title = details_title_edit.text.toString(),
-                description = details_description_edit.text.toString()
-            )
+        thread {
+            val db = AppDatabase.INSTANCE
+            val dao: TaskDAO = db.taskDao()
 
             db.runInTransaction {
                 var exists = false
@@ -79,14 +157,16 @@ class TaskDetailsFragment(private val fm: FragmentManager) : Fragment(R.layout.f
                 if (exists)
                     dao.updateTask(task)
                 else
-                    dao.insertTask(task)
+                    task_id = dao.insertTask(task)
             }
         }
     }
 
     private fun setFields(task: Task) {
         task_id = task.task_id
-        details_category_edit.setText("")
+        details_category_edit.setSelection(categories.indexOfFirst {
+            it.cat_id!! == task.category
+        })
         details_dueDate_edit.setText(task.dueDate)
         details_title_edit.setText(task.title)
         details_description_edit.setText(task.description)
@@ -94,7 +174,7 @@ class TaskDetailsFragment(private val fm: FragmentManager) : Fragment(R.layout.f
 
     private fun clearFields() {
         task_id = null
-        details_category_edit.setText("")
+        details_category_edit.setSelection(0)
         details_dueDate_edit.setText("")
         details_title_edit.setText("")
         details_description_edit.setText("")

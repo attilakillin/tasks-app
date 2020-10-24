@@ -6,4 +6,10 @@
     <string name="light_color_type">Light</string>
     <string name="dark_color_type">Dark</string>
     <string name="add_new_category">Add new category</string>
+    <string name="category">Category:</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_description">Enter description</string>
+    <string name="save">Save</string>
+    <string name="due_date">Due date:</string>
+    <string name="done">Done</string>
 </resources>

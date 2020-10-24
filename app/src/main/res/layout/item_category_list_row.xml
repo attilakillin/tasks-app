@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Mikro- és makroökonómia" />
 
-    <ImageButton
+    <Button
         android:background="@drawable/ic_delete_24px"
         android:adjustViewBounds="true"
         android:id="@+id/catRow_deleteButton"

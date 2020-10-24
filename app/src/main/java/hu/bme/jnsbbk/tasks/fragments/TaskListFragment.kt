@@ -11,13 +11,13 @@ import hu.bme.jnsbbk.tasks.adapter.TaskListAdapter
 import hu.bme.jnsbbk.tasks.data.AppDatabase
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
-class TaskListFragment(private val fm: FragmentManager) : Fragment(R.layout.fragment_task_list) {
+class TaskListFragment : Fragment(R.layout.fragment_task_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val listener: (Long) -> Unit = {
-            fm.setFragmentResult("populateDetails", bundleOf("id" to it))
-            fm.setFragmentResult("switchToDetails", Bundle())
+            parentFragmentManager.setFragmentResult("populateDetails", bundleOf("id" to it))
+            parentFragmentManager.setFragmentResult("switchToDetails", Bundle())
         }
 
         val adapter = TaskListAdapter(listener)
