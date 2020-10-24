@@ -1,13 +1,12 @@
 package hu.bme.jnsbbk.tasks.fragments
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker
 import hu.bme.jnsbbk.tasks.R
@@ -26,7 +25,7 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         val view = createView()
         val builder = AlertDialog.Builder(requireContext())
             .setTitle(mode.prefix + " category") // TODO Extract string
-            .setPositiveButton("Save") { _, _ -> saveCategory(view) }
+            .setPositiveButton("Save") {_, _ -> saveCategory(view) }
             .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         builder.setView(view)
         return builder.create()
@@ -72,10 +71,10 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
     }
 
     private fun saveCategory(view: View) {
-        // TODO Category name shouldn't be null
         category.name = view.cat_editor_title.text.toString()
+        if (category.name == "") return // TODO Check if empty
 
-        val dao = AppDatabase.getInstance(requireActivity().applicationContext).categoryDao()
+        val dao = AppDatabase.INSTANCE.categoryDao()
         when (mode) {
             Mode.ADD  -> thread { dao.insertCategory(category) }
             Mode.EDIT -> thread { dao.updateCategory(category) }

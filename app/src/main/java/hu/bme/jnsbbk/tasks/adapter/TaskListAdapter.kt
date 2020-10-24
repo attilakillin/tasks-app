@@ -33,7 +33,7 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
         val task = getItem(position).copy()
 
         holder.category.text = task.category
-        holder.dueDate.text = task.dueDate
+        holder.dueDate.text = task.due_date
         holder.title.text = task.title
 
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
