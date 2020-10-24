@@ -4,10 +4,14 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.time.LocalDate
 
-@Entity(tableName = "tasks", foreignKeys = arrayOf(ForeignKey(entity = Category::class,
-    parentColumns = ["cat_id"], childColumns = ["category_fk"], onDelete = ForeignKey.CASCADE)))
+@Entity(tableName = "tasks",
+        foreignKeys = [ForeignKey(
+            entity = Category::class,
+            parentColumns = ["cat_id"],
+            childColumns = ["category_fk"],
+            onDelete = ForeignKey.CASCADE
+        )])
 data class Task (
     @PrimaryKey(autoGenerate = true) var task_id: Long?,
     @ColumnInfo(name = "category_fk") val category: Long?,

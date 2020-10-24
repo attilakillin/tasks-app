@@ -11,18 +11,11 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDAO
 
     companion object {
-        private var INSTANCE: AppDatabase? = null
+        lateinit var INSTANCE: AppDatabase private set
 
-        fun getInstance(context: Context): AppDatabase {
-            if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "tasks.db")
-                    .fallbackToDestructiveMigration().build()
-            }
-            return INSTANCE!!
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
+        fun initialize(context: Context) {
+            INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "tasks.db")
+                .fallbackToDestructiveMigration().build()
         }
     }
 }
