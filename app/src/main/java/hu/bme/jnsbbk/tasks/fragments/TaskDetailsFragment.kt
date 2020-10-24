@@ -83,7 +83,8 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                 details_doneSave_button.text = resources.getString(R.string.save)
                 details_doneSave_button.setOnClickListener {
                     saveTask()
-                    setMode(Mode.VIEW)
+                    clearFields()
+                    parentFragmentManager.setFragmentResult("switchToList", Bundle())
                 }
             }
         }
@@ -137,8 +138,9 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
     }
 
     private fun saveTask() {
+        val idCopy = task_id
         val task = Task(
-            task_id = task_id,
+            task_id = idCopy,
             category = (details_category_edit.adapter as CategorySpinnerAdapter)
                 .getCategoryId(details_category_edit.selectedItemPosition),
             dueDate = details_dueDate_edit.text.toString(),
@@ -152,12 +154,12 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
 
             db.runInTransaction {
                 var exists = false
-                if (task_id != null)
-                    exists = (dao.getTask(task_id!!) != null)
+                if (idCopy != null)
+                    exists = (dao.getTask(idCopy) != null)
                 if (exists)
                     dao.updateTask(task)
                 else
-                    task_id = dao.insertTask(task)
+                    dao.insertTask(task)
             }
         }
     }
