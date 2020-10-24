@@ -1,12 +1,12 @@
 package hu.bme.jnsbbk.tasks.adapter
 
-import android.app.Activity
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,21 +18,19 @@ import hu.bme.jnsbbk.tasks.data.AppDatabase
 import hu.bme.jnsbbk.tasks.fragments.CategoryEditorDialog
 import kotlin.concurrent.thread
 
-class CategoryListAdapter(private val activity: Activity, private val fm: FragmentManager) :
+class CategoryListAdapter(private val fm: FragmentManager) :
     ListAdapter<Category, CategoryListAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.catRow_name
         var category: Category? = null
-        val name = itemView.catRow_name
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_category_list_row, parent, false
-        )
-        val vh = ViewHolder(view)
-        setListeners(vh)
-        return vh
+        val holder = ViewHolder(LayoutInflater.from(parent.context).inflate(
+            R.layout.item_category_list_row, parent, false))
+        setListeners(holder)
+        return holder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -54,7 +52,7 @@ class CategoryListAdapter(private val activity: Activity, private val fm: Fragme
         holder.itemView.catRow_deleteButton.setOnClickListener {
             val cat = holder.category!!
             thread {
-                val dao = AppDatabase.getInstance(activity.applicationContext).categoryDao()
+                val dao = AppDatabase.INSTANCE.categoryDao()
                 dao.deleteCategory(cat)
             }
         }
