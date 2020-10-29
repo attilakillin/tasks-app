@@ -13,4 +13,6 @@
     <string name="due_date">Due date:</string>
     <string name="done">Done</string>
     <string name="due_date_nocolon">Due date</string>
+    <string name="preferences">hu.bme.jnsbbk.tasks.Preferences</string>
+    <string name="dark_mode">Dark mode</string>
 </resources>

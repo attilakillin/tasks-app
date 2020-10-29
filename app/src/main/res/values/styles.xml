@@ -4,18 +4,36 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorBackgroundFloating">@color/colorBackground</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColor">@color/colorText</item>
 
-        <item name="editTextStyle">@style/TasksThemeLight.EditTextStyle</item>
-        <item name="taskListRowStyle">@style/TasksThemeLight.TaskListRowStyle</item>
+        <item name="editTextStyle">@style/TasksTheme.EditTextStyle</item>
+        <item name="taskListRowStyle">@style/TasksTheme.TaskListRowStyle</item>
+        <item name="android:datePickerDialogTheme">@style/TasksTheme.DatePickerTheme</item>
     </style>
 
-    <style name="TasksThemeLight.EditTextStyle" parent="android:Widget.EditText">
+    <style name="TasksTheme.EditTextStyle" parent="android:Widget.EditText">
         <item name="android:background">@drawable/rounded_corners</item>
         <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
     </style>
 
-    <style name="TasksThemeLight.TaskListRowStyle" parent="TasksThemeLight">
+    <style name="TasksTheme.TaskListRowStyle" parent="TasksThemeLight">
         <item name="android:background">@drawable/rounded_corners</item>
+    </style>
+
+    <style name="TasksTheme.DatePickerTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+    </style>
+
+    <style name="TasksTheme.DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:windowBackground">@color/colorBackground</item>
+
     </style>
 
 </resources>
