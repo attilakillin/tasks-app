@@ -3,17 +3,21 @@
     <group android:id="@+id/menuGroup_lists" android:checkableBehavior="single">
         <item
             android:id="@+id/navItem_taskPagerFragment"
+            android:icon="@drawable/ic_tasks_24px"
             android:title="@string/tasks"/>
         <item
             android:id="@+id/menuItem_completed"
+            android:icon="@drawable/ic_completed_24px"
             android:title="Completed"/>
         <item
             android:id="@+id/menuItem_trash"
+            android:icon="@drawable/ic_delete_24px"
             android:title="Trash"/>
     </group>
     <group android:id="@+id/menuGroup_remaining" android:checkableBehavior="single">
     <item
         android:id="@+id/navItem_categoryListFragment"
+        android:icon="@drawable/ic_categories_24px"
         android:title="@string/categories"/>
     </group>
 </menu>

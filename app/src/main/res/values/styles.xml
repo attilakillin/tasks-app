@@ -37,6 +37,7 @@
     </style>
 
     <style name="TasksTheme.NavigationStyle" parent="Widget.Design.NavigationView">
+        <item name="itemIconTint">@color/colorText</item>
         <item name="itemTextColor">@color/colorText</item>
         <item name="itemBackground">@drawable/drawer_item</item>
     </style>
