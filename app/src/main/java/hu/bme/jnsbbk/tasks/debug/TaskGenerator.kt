@@ -1,7 +1,7 @@
 package hu.bme.jnsbbk.tasks.debug
 
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.Task
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.db.Task
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 

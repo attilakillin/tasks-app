@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.data
+package hu.bme.jnsbbk.tasks.persistence.db
 
 import androidx.room.*
 
@@ -7,7 +7,8 @@ import androidx.room.*
             entity = Category::class,
             parentColumns = ["cat_id"],
             childColumns = ["category_fk"],
-            onDelete = ForeignKey.CASCADE)],
+            onDelete = ForeignKey.CASCADE
+        )],
         indices = [
             Index(value = ["category_fk"]),
             Index(value = ["due_date"])

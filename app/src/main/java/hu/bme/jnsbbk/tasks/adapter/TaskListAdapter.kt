@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.callback.TaskInfoDiffCallback
-import hu.bme.jnsbbk.tasks.data.TaskInfo
-import hu.bme.jnsbbk.tasks.data.ThemePreferences
+import hu.bme.jnsbbk.tasks.persistence.db.TaskInfo
+import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
 import kotlinx.android.synthetic.main.item_task_list_row.view.*
 
 class TaskListAdapter(private val listener: (Long) -> Unit) :

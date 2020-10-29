@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.callback.CategoryDiffCallback
-import hu.bme.jnsbbk.tasks.data.Category
+import hu.bme.jnsbbk.tasks.persistence.db.Category
 import kotlinx.android.synthetic.main.item_category_list_row.view.*
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.ThemePreferences
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
 import hu.bme.jnsbbk.tasks.fragments.CategoryEditorDialog
 import kotlin.concurrent.thread
 

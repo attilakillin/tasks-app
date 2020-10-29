@@ -1,7 +1,7 @@
 package hu.bme.jnsbbk.tasks.callback
 
 import androidx.recyclerview.widget.DiffUtil
-import hu.bme.jnsbbk.tasks.data.Category
+import hu.bme.jnsbbk.tasks.persistence.db.Category
 
 class CategoryDiffCallback : DiffUtil.ItemCallback<Category>() {
     override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {

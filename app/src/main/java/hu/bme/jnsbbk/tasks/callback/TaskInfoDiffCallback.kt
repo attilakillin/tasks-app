@@ -1,7 +1,7 @@
 package hu.bme.jnsbbk.tasks.callback
 
 import androidx.recyclerview.widget.DiffUtil
-import hu.bme.jnsbbk.tasks.data.TaskInfo
+import hu.bme.jnsbbk.tasks.persistence.db.TaskInfo
 
 class TaskInfoDiffCallback : DiffUtil.ItemCallback<TaskInfo>() {
     override fun areItemsTheSame(oldItem: TaskInfo, newItem: TaskInfo): Boolean {

@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.adapter.TaskListAdapter
-import hu.bme.jnsbbk.tasks.data.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
 class TaskListFragment : Fragment(R.layout.fragment_task_list) {

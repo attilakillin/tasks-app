@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.adapter.CategoryListAdapter
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.Category
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.db.Category
 import kotlinx.android.synthetic.main.fragment_category_list.*
 
 class CategoryListFragment : Fragment(R.layout.fragment_category_list) {

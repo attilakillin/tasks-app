@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.data
+package hu.bme.jnsbbk.tasks.persistence
 
 import android.content.Context
 import android.content.SharedPreferences

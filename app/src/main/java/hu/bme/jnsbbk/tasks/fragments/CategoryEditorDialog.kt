@@ -5,14 +5,13 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker
 import hu.bme.jnsbbk.tasks.R
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.Category
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.db.Category
 import kotlinx.android.synthetic.main.dialog_category_editor.view.*
 import kotlin.concurrent.thread
 

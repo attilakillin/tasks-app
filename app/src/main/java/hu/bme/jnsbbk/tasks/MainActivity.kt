@@ -1,20 +1,16 @@
 package hu.bme.jnsbbk.tasks
 
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import hu.bme.jnsbbk.tasks.data.AppDatabase
-import hu.bme.jnsbbk.tasks.data.ThemePreferences
+import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
+import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
 import hu.bme.jnsbbk.tasks.debug.TaskGenerator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread

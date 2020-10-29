@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.data
+package hu.bme.jnsbbk.tasks.persistence.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

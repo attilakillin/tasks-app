@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.data
+package hu.bme.jnsbbk.tasks.persistence.db
 
 import android.content.Context
 import androidx.room.Database
@@ -15,7 +15,11 @@ abstract class AppDatabase : RoomDatabase() {
         lateinit var INSTANCE: AppDatabase private set
 
         fun initialize(context: Context) {
-            INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "tasks.db")
+            INSTANCE = Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "tasks.db"
+            )
                 .fallbackToDestructiveMigration().build()
         }
     }
