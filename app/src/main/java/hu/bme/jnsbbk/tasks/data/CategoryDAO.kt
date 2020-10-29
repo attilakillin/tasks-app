@@ -11,6 +11,9 @@ interface CategoryDAO {
     @Query("SELECT * FROM categories WHERE cat_id = :id LIMIT 1")
     fun getCategory(id: Long): Category?
 
+    @Query("SELECT * FROM categories")
+    fun getCategoryList(): List<Category>
+
     @Insert
     fun insertCategory(cat: Category): Long
 

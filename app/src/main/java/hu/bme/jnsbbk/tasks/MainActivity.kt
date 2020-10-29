@@ -15,7 +15,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import hu.bme.jnsbbk.tasks.data.AppDatabase
 import hu.bme.jnsbbk.tasks.data.ThemePreferences
+import hu.bme.jnsbbk.tasks.debug.TaskGenerator
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         } else if (item.itemId == R.id.menuItem_darkMode) {
             ThemePreferences.toggleDarkMode()
             loadTheme()
+        } else if (item.itemId == R.id.menuItem_generate) {
+            thread { TaskGenerator.generateTask() }
         }
         return super.onOptionsItemSelected(item)
     }

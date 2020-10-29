@@ -15,4 +15,5 @@
     <string name="due_date_nocolon">Due date</string>
     <string name="preferences">hu.bme.jnsbbk.tasks.Preferences</string>
     <string name="dark_mode">Dark mode</string>
+    <string name="generate_test_task">Generate test task</string>
 </resources>
