@@ -31,9 +31,4 @@
         <item name="android:textColorPrimary">@color/colorText</item>
     </style>
 
-    <style name="TasksTheme.DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
-        <item name="android:windowBackground">@color/colorBackground</item>
-
-    </style>
-
 </resources>
