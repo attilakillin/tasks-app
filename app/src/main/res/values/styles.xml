@@ -8,9 +8,14 @@
         <item name="android:textColorPrimary">@color/colorText</item>
         <item name="android:textColor">@color/colorText</item>
 
+        <!-- Ez a navigation drawer divider-je, de csak akkor működik, ha
+             itt állítom be, és nem a TasksTheme.NavigationStyle-ban -->
+        <item name="android:listDivider">@color/colorForeground</item>
+
         <item name="editTextStyle">@style/TasksTheme.EditTextStyle</item>
         <item name="taskListRowStyle">@style/TasksTheme.TaskListRowStyle</item>
         <item name="android:datePickerDialogTheme">@style/TasksTheme.DatePickerTheme</item>
+        <item name="navigationViewStyle">@style/TasksTheme.NavigationStyle</item>
     </style>
 
     <style name="TasksTheme.EditTextStyle" parent="android:Widget.EditText">
@@ -31,4 +36,9 @@
         <item name="android:textColorPrimary">@color/colorText</item>
     </style>
 
+    <style name="TasksTheme.NavigationStyle" parent="Widget.Design.NavigationView">
+        <item name="itemTextColor">@color/colorText</item>
+        <item name="itemBackground">@drawable/drawer_item</item>
+    </style>
+    
 </resources>

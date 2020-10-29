@@ -3,7 +3,7 @@
     <group android:id="@+id/menuGroup_lists" android:checkableBehavior="single">
         <item
             android:id="@+id/navItem_taskPagerFragment"
-            android:title="Tasks"/>
+            android:title="@string/tasks"/>
         <item
             android:id="@+id/menuItem_completed"
             android:title="Completed"/>
@@ -14,6 +14,6 @@
     <group android:id="@+id/menuGroup_remaining" android:checkableBehavior="single">
     <item
         android:id="@+id/navItem_categoryListFragment"
-        android:title="Categories"/>
+        android:title="@string/categories"/>
     </group>
 </menu>
