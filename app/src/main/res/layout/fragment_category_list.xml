@@ -11,7 +11,9 @@
         android:id="@+id/categories_add_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_category"/>
+        android:text="@string/add_new_category"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorTextLight"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recyclerview"
