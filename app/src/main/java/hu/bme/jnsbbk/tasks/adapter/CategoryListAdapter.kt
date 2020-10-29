@@ -15,6 +15,7 @@ import hu.bme.jnsbbk.tasks.callback.CategoryDiffCallback
 import hu.bme.jnsbbk.tasks.data.Category
 import kotlinx.android.synthetic.main.item_category_list_row.view.*
 import hu.bme.jnsbbk.tasks.data.AppDatabase
+import hu.bme.jnsbbk.tasks.data.ThemePreferences
 import hu.bme.jnsbbk.tasks.fragments.CategoryEditorDialog
 import kotlin.concurrent.thread
 
@@ -39,8 +40,9 @@ class CategoryListAdapter(private val fm: FragmentManager) :
         holder.category = category
         holder.name.text = category.name
 
+        val color = if (ThemePreferences.darkMode) category.color_dark else category.color_light
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
-        bg.color = ColorStateList.valueOf(Color.parseColor(category.color_light))
+        bg.color = ColorStateList.valueOf(Color.parseColor(color))
     }
 
     private fun setListeners(holder: ViewHolder) {

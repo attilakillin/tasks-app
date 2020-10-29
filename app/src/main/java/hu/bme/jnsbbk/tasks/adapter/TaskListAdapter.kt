@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.callback.TaskInfoDiffCallback
 import hu.bme.jnsbbk.tasks.data.TaskInfo
+import hu.bme.jnsbbk.tasks.data.ThemePreferences
 import kotlinx.android.synthetic.main.item_task_list_row.view.*
 
 class TaskListAdapter(private val listener: (Long) -> Unit) :
@@ -36,8 +37,9 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
         holder.dueDate.text = task.due_date
         holder.title.text = task.title
 
+        val color = if (ThemePreferences.darkMode) task.color_dark else task.color_light
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
-        bg.color = ColorStateList.valueOf(Color.parseColor(task.color_light))
+        bg.color = ColorStateList.valueOf(Color.parseColor(color))
 
         holder.itemView.setOnClickListener { listener(task.task_id) }
     }
