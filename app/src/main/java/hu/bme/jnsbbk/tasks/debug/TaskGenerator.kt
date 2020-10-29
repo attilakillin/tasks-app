@@ -23,11 +23,11 @@ object TaskGenerator {
 
         val db = AppDatabase.INSTANCE
         db.runInTransaction {
-            val cats = db.categoryDao().getCategoryList()
+            val cats = db.categoryDao().getCategoryIDs()
             val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
             val task = Task(
                 task_id = null,
-                category = cats.get(cat_idx).cat_id,
+                category = cats.get(cat_idx)!!,
                 dueDate = "%d-%02d-%02d".format(y, m, d),
                 title = builder.toString(),
                 description = "Placeholder description"
