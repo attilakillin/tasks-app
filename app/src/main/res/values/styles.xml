@@ -41,5 +41,5 @@
         <item name="itemTextColor">@color/colorText</item>
         <item name="itemBackground">@drawable/drawer_item</item>
     </style>
-    
+
 </resources>

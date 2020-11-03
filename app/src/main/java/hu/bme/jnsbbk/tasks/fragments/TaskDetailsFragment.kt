@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import hu.bme.jnsbbk.tasks.R
@@ -84,7 +85,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                 enableViewsForEditing(true)
                 details_doneSave_button.text = resources.getString(R.string.save)
                 details_doneSave_button.setOnClickListener {
-                    saveTask()
+                    if (!saveTask()) return@setOnClickListener
                     clearFields()
                     parentFragmentManager.setFragmentResult("switchToList", Bundle())
                 }
@@ -130,7 +131,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
     private fun setUpDateEditor() {
         val cal: Calendar = Calendar.getInstance()
         val dateSelected = { _: DatePicker, y: Int, m: Int, d: Int ->
-            details_dueDate_edit.setText("%d-%02d-%02d".format(y, m, d))
+            details_dueDate_edit.setText("%d-%02d-%02d".format(y, m + 1, d))
         }
         val picker = DatePickerDialog(requireContext(), dateSelected,
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
@@ -139,7 +140,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
         details_dueDate_edit.setOnClickListener { picker.show() }
     }
 
-    private fun saveTask() {
+    private fun saveTask(): Boolean {
         val idCopy = task_id
         val task = Task(
             task_id = idCopy,
@@ -149,6 +150,17 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
             title = details_title_edit.text.toString(),
             description = details_description_edit.text.toString()
         )
+
+        if (task.title == "") {
+            Toast.makeText(requireContext(),"Please enter a title for your note!",
+                Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (task.dueDate == "") {
+            Toast.makeText(requireContext(), "Please choose the due date for your note!",
+                Toast.LENGTH_SHORT).show()
+            return false
+        }
 
         thread {
             val db = AppDatabase.INSTANCE
@@ -164,6 +176,8 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                     dao.insertTask(task)
             }
         }
+
+        return true
     }
 
     private fun setFields(task: Task) {

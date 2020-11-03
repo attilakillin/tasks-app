@@ -1,5 +1,6 @@
 package hu.bme.jnsbbk.tasks.adapter
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -53,10 +55,21 @@ class CategoryListAdapter(private val fm: FragmentManager) :
 
         holder.itemView.catRow_deleteButton.setOnClickListener {
             val cat = holder.category!!
-            thread {
-                val dao = AppDatabase.INSTANCE.categoryDao()
-                dao.deleteCategory(cat)
+            confirmThenDo(holder.itemView.context) {
+                thread {
+                    val dao = AppDatabase.INSTANCE.categoryDao()
+                    dao.deleteCategory(cat)
+                }
             }
         }
+    }
+
+    private fun confirmThenDo(context: Context, deleteAction: Runnable) {
+        val builder = AlertDialog.Builder(context)
+            .setTitle("Are you sure?")
+            .setMessage("Deleting this category will delete every task associated with it!")
+            .setPositiveButton("OK") { _, _ -> deleteAction.run() }
+            .setNegativeButton("Cancel") { _, _ -> Unit }
+        builder.create().show()
     }
 }

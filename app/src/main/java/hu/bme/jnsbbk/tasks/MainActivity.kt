@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -48,7 +49,13 @@ class MainActivity : AppCompatActivity() {
             ThemePreferences.toggleDarkMode()
             loadTheme()
         } else if (item.itemId == R.id.menuItem_generate) {
-            thread { TaskGenerator.generateTask() }
+            thread {
+                val success = TaskGenerator.generateTask()
+                if (!success) runOnUiThread {
+                    Toast.makeText(this, "Can't generate random task: Please create a category first!",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
