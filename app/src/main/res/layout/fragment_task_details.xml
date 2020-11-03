@@ -7,7 +7,7 @@
     android:paddingBottom="20dp"
     android:paddingHorizontal="20dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.TaskDetailsFragment">
+    tools:context=".fragments.tasklist.TaskDetailsFragment">
 
     <TextView
         android:id="@+id/details_category_text"

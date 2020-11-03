@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.fragments
+package hu.bme.jnsbbk.tasks.fragments.category
 
 import android.app.Dialog
 import android.content.res.ColorStateList
@@ -76,7 +76,7 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
 
         val dao = AppDatabase.INSTANCE.categoryDao()
         when (mode) {
-            Mode.ADD  -> thread { dao.insertCategory(category) }
+            Mode.ADD -> thread { dao.insertCategory(category) }
             Mode.EDIT -> thread { dao.updateCategory(category) }
         }
     }

@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.fragments
+package hu.bme.jnsbbk.tasks.fragments.tasklist
 
 import android.os.Bundle
 import android.view.View

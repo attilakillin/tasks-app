@@ -1,4 +1,4 @@
-package hu.bme.jnsbbk.tasks.fragments
+package hu.bme.jnsbbk.tasks.fragments.tasklist
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -13,7 +13,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.adapter.CategorySpinnerAdapter
-import hu.bme.jnsbbk.tasks.persistence.*
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import hu.bme.jnsbbk.tasks.persistence.db.Category
 import hu.bme.jnsbbk.tasks.persistence.db.Task
