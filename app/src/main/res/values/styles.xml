@@ -6,6 +6,7 @@
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorBackgroundFloating">@color/colorBackground</item>
         <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="textColorAlertDialogListItem">@color/colorText</item>
         <item name="android:textColor">@color/colorText</item>
 
         <!-- Ez a navigation drawer divider-je, de csak akkor működik, ha

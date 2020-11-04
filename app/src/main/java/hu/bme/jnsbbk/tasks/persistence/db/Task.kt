@@ -18,5 +18,7 @@ data class Task (
     @ColumnInfo(name = "category_fk") val category: Long?,
     @ColumnInfo(name = "due_date") val dueDate: String,
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "description") val description: String
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "is_completed") val completed: Boolean = false,
+    @ColumnInfo(name = "is_in_trash") val inTrash: Boolean = false
 )

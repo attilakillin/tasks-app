@@ -10,6 +10,10 @@
         android:name="hu.bme.jnsbbk.tasks.fragments.tasklist.TaskPagerFragment"
         android:label="Tasks"/>
     <fragment
+        android:id="@+id/navItem_taskTrashFragment"
+        android:name="hu.bme.jnsbbk.tasks.fragments.TaskTrashFragment"
+        android:label="Trash"/>
+    <fragment
         android:id="@+id/navItem_categoryListFragment"
         android:name="hu.bme.jnsbbk.tasks.fragments.category.CategoryListFragment"
         android:label="Categories"/>

@@ -16,4 +16,8 @@
     <string name="generate_test_task">Generate test task</string>
     <string name="tasks">Tasks</string>
     <string name="categories">Categories</string>
+    <string name="trash">Trash</string>
+    <string name="empty_trash">Empty trash</string>
+    <string name="n_tasks_in_trash_plural">%d tasks in trash</string>
+    <string name="n_tasks_in_trash_singular">%d task in trash</string>
 </resources>

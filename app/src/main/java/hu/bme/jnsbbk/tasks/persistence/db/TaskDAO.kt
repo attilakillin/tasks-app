@@ -20,6 +20,15 @@ interface TaskDAO {
     @Update
     fun updateTask(task: Task)
 
+    @Query("UPDATE tasks SET is_in_trash = 1 WHERE task_id = :id")
+    fun softDeleteTask(id: Long)
+
+    @Query("UPDATE tasks SET is_in_trash = 0 WHERE task_id = :id")
+    fun restoreTask(id: Long)
+
     @Query("DELETE FROM tasks WHERE task_id = :id")
-    fun deleteTaskById(id: Long)
+    fun hardDeleteTask(id: Long)
+
+    @Query("DELETE FROM tasks WHERE is_in_trash = 1")
+    fun hardDeleteMarkedTasks()
 }

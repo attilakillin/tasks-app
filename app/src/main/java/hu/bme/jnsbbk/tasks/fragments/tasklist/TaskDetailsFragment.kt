@@ -57,7 +57,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
         details_delete_button.setOnClickListener {
             val idCopy = task_id!!
             thread {
-                AppDatabase.INSTANCE.taskDao().deleteTaskById(idCopy)
+                AppDatabase.INSTANCE.taskDao().softDeleteTask(idCopy)
             }
             clearFields()
             setMode(Mode.EDIT)
