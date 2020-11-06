@@ -14,7 +14,7 @@ interface CategoryDAO {
     @Query("SELECT cat_id FROM categories")
     fun getCategoryIDs(): List<Long?>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertCategory(cat: Category): Long
 
     @Update
@@ -22,4 +22,15 @@ interface CategoryDAO {
 
     @Delete
     fun deleteCategory(cat: Category)
+
+    @Transaction
+    fun checkAndInsertNoCategory() {
+        val nocat = Category(
+            cat_id = 0,
+            name = "No category",
+            color_light = "#E0E0E0",
+            color_dark = "#292929"
+        )
+        insertCategory(nocat)
+    }
 }

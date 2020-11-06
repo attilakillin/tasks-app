@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -45,10 +46,13 @@ class CategoryListAdapter(private val fm: FragmentManager) :
         val color = if (ThemePreferences.darkMode) category.color_dark else category.color_light
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
         bg.color = ColorStateList.valueOf(Color.parseColor(color))
+
+        holder.itemView.catRow_deleteButton.isVisible = (category.cat_id!! != 0L)
     }
 
     private fun setListeners(holder: ViewHolder) {
         holder.itemView.setOnClickListener {
+            if (holder.category!!.cat_id!! == 0L) return@setOnClickListener // No category behavior
             val dialog = CategoryEditorDialog(holder.category!!, CategoryEditorDialog.Mode.EDIT)
             dialog.show(fm, null)
         }

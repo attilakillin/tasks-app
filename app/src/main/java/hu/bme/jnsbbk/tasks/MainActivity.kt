@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         AppDatabase.initialize(this)
         setupNavigation()
+        thread { AppDatabase.INSTANCE.categoryDao().checkAndInsertNoCategory() }
     }
 
     override fun onSupportNavigateUp(): Boolean {
