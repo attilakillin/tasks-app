@@ -16,17 +16,19 @@ import kotlinx.android.synthetic.main.dialog_category_editor.view.*
 import kotlin.concurrent.thread
 
 class CategoryEditorDialog(private val category: Category, private val mode: Mode) : DialogFragment() {
-    enum class Mode(val prefix: String) {
-        ADD("Add new"),
-        EDIT("Edit")
+    enum class Mode {
+        ADD, EDIT
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = createView()
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle(mode.prefix + " category") // TODO Extract string
-            .setPositiveButton("Save") {_, _ -> saveCategory(view) }
-            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+            .setPositiveButton(R.string.save) {_, _ -> saveCategory(view) }
+            .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+        if (mode == Mode.ADD)
+            builder.setTitle(R.string.add_new_category)
+        else
+            builder.setTitle(R.string.edit_category)
         builder.setView(view)
         return builder.create()
     }

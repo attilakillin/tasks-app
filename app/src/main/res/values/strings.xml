@@ -23,4 +23,6 @@
     <string name="n_tasks_in_trash_singular">%d task in trash</string>
     <string name="please_enter_title_toast">Please enter a title for your note!</string>
     <string name="please_choose_due_date_toast">Please choose the due date for your note!</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_category">Edit category</string>
 </resources>

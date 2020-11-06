@@ -28,7 +28,7 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
                 cat_id = null,
                 name = "New Category",
                 color_light = "#e4e4e4",
-                color_dark = "#e4e4e4"
+                color_dark = "#292929"
             )
             val dialog = CategoryEditorDialog(cat, CategoryEditorDialog.Mode.ADD)
             dialog.show(parentFragmentManager, null)
