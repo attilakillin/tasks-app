@@ -2,6 +2,7 @@ package hu.bme.jnsbbk.tasks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,6 +14,7 @@ import androidx.navigation.ui.*
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
 import hu.bme.jnsbbk.tasks.debug.TaskGenerator
+import hu.bme.jnsbbk.tasks.fragments.tasklist.TaskPagerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbarmenu, menu)
+        menuInflater.inflate(R.menu.toolbarmenu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -59,6 +61,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (root_drawerLayout.isDrawerOpen(root_navView)) {
+            root_drawerLayout.closeDrawers()
+            return
+        }
+
+        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val current = navHost.childFragmentManager.primaryNavigationFragment
+        if (current is TaskPagerFragment && current.processBackButtonPress()) {
+            return // Ekkor sikerült a TaskPagerFragmentnek feldolgoznia a vissza gomb kérést
+        }
+
+        super.onBackPressed()
+
     }
 
     private fun setupNavigation() {

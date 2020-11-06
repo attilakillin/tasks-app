@@ -6,11 +6,6 @@
         android:id="@+id/menuItem_generate"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_random_24px"
+        android:orderInCategory="0"
         android:title="@string/generate_test_task"/>
-
-    <item
-        android:id="@+id/menuItem_darkMode"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_darkmode_24px"
-        android:title="@string/dark_mode" />
 </menu>
