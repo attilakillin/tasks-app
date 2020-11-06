@@ -16,7 +16,7 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 
         val listener: (Long) -> Unit = {
             parentFragmentManager.setFragmentResult("populateDetails", bundleOf("id" to it))
-            parentFragmentManager.setFragmentResult("switchToDetails", Bundle())
+            parentFragmentManager.setFragmentResult("switchToDetails", Bundle.EMPTY)
         }
 
         val adapter = TaskListAdapter(listener)

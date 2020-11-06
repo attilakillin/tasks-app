@@ -9,7 +9,8 @@
     <string name="enter_description">Enter description</string>
     <string name="save">Save</string>
     <string name="due_date">Due date:</string>
-    <string name="done">Done</string>
+    <string name="back">Back</string>
+    <string name="done">Done!</string>
     <string name="due_date_nocolon">Due date</string>
     <string name="preferences">hu.bme.jnsbbk.tasks.Preferences</string>
     <string name="dark_mode">Dark mode</string>
@@ -20,4 +21,6 @@
     <string name="empty_trash">Empty trash</string>
     <string name="n_tasks_in_trash_plural">%d tasks in trash</string>
     <string name="n_tasks_in_trash_singular">%d task in trash</string>
+    <string name="please_enter_title_toast">Please enter a title for your note!</string>
+    <string name="please_choose_due_date_toast">Please choose the due date for your note!</string>
 </resources>

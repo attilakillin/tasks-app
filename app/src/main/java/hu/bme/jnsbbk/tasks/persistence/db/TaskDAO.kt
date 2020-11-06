@@ -30,5 +30,8 @@ interface TaskDAO {
     fun hardDeleteTask(id: Long)
 
     @Query("DELETE FROM tasks WHERE is_in_trash = 1")
-    fun hardDeleteMarkedTasks()
+    fun hardDeleteTrashedTasks()
+
+    @Query("UPDATE tasks SET is_completed = 1 WHERE task_id = :id")
+    fun completeTask(id: Long)
 }

@@ -17,10 +17,10 @@ class TaskPagerFragment : Fragment(R.layout.fragment_task_pager) {
 
         viewpager_tasklist.adapter = TaskListPagerAdapter(childFragmentManager)
 
-        childFragmentManager.setFragmentResultListener("switchToList", viewLifecycleOwner) { key, bundle ->
+        childFragmentManager.setFragmentResultListener("switchToList", viewLifecycleOwner) { _, _ ->
             viewpager_tasklist.currentItem = 0
         }
-        childFragmentManager.setFragmentResultListener("switchToDetails", viewLifecycleOwner) { key, bundle ->
+        childFragmentManager.setFragmentResultListener("switchToDetails", viewLifecycleOwner) { _, _ ->
             viewpager_tasklist.currentItem = 1
         }
     }
@@ -33,6 +33,7 @@ class TaskPagerFragment : Fragment(R.layout.fragment_task_pager) {
     /* Igaz, ha feldolgozta a kérést, hamis, ha nem, és a hívónak kell */
     fun processBackButtonPress(): Boolean {
         if (viewpager_tasklist.currentItem != 0) {
+            childFragmentManager.setFragmentResult("backPressed", Bundle.EMPTY)
             viewpager_tasklist.currentItem = 0
             return true
         }

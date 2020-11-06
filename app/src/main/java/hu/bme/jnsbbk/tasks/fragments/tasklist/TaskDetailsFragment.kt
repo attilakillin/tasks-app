@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import hu.bme.jnsbbk.tasks.R
@@ -51,6 +52,13 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                 }
             }
         }
+
+        parentFragmentManager.setFragmentResultListener("backPressed", viewLifecycleOwner) { _, _ ->
+            if (current_mode == Mode.VIEW) {
+                clearFields()
+                setMode(Mode.EDIT)
+            }
+        }
     }
 
     private fun addEditorButtonListeners() {
@@ -61,7 +69,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
             }
             clearFields()
             setMode(Mode.EDIT)
-            parentFragmentManager.setFragmentResult("switchToList", Bundle())
+            parentFragmentManager.setFragmentResult("switchToList", Bundle.EMPTY)
         }
         details_edit_button.setOnClickListener {
             setMode(Mode.EDIT)
@@ -70,24 +78,44 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
 
     private fun setMode(mode: Mode) {
         current_mode = mode
+        refreshDoneButtonColor()
         when (mode) {
             Mode.VIEW -> {
                 enableViewsForEditing(false)
-                details_doneSave_button.text = resources.getString(R.string.done)
                 details_doneSave_button.setOnClickListener {
+                    val id = task_id
+                    if (id != null) thread { AppDatabase.INSTANCE.taskDao().completeTask(id) }
                     clearFields()
                     setMode(Mode.EDIT)
-                    parentFragmentManager.setFragmentResult("switchToList", Bundle())
+                    parentFragmentManager.setFragmentResult("switchToList", Bundle.EMPTY)
                 }
             }
             Mode.EDIT -> {
                 enableViewsForEditing(true)
-                details_doneSave_button.text = resources.getString(R.string.save)
                 details_doneSave_button.setOnClickListener {
                     if (!saveTask()) return@setOnClickListener
                     clearFields()
-                    parentFragmentManager.setFragmentResult("switchToList", Bundle())
+                    parentFragmentManager.setFragmentResult("switchToList", Bundle.EMPTY)
                 }
+            }
+        }
+    }
+
+    private fun refreshDoneButtonColor() {
+        when (current_mode) {
+            Mode.VIEW -> {
+                details_doneSave_button.text = resources.getString(R.string.done)
+                details_doneSave_button.backgroundTintList = AppCompatResources
+                    .getColorStateList(requireContext(), R.color.colorGreen)
+                details_doneSave_button.setTextColor(AppCompatResources
+                    .getColorStateList(requireContext(), R.color.colorTextDark))
+            }
+            Mode.EDIT -> {
+                details_doneSave_button.text = resources.getString(R.string.save)
+                details_doneSave_button.backgroundTintList =
+                    AppCompatResources.getColorStateList(requireContext(), R.color.colorAccent)
+                details_doneSave_button.setTextColor(AppCompatResources
+                    .getColorStateList(requireContext(), R.color.colorTextLight))
             }
         }
     }
@@ -151,12 +179,12 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
         )
 
         if (task.title == "") {
-            Toast.makeText(requireContext(),"Please enter a title for your note!",
+            Toast.makeText(requireContext(),getString(R.string.please_enter_title_toast),
                 Toast.LENGTH_SHORT).show()
             return false
         }
         if (task.dueDate == "") {
-            Toast.makeText(requireContext(), "Please choose the due date for your note!",
+            Toast.makeText(requireContext(), getString(R.string.please_choose_due_date_toast),
                 Toast.LENGTH_SHORT).show()
             return false
         }

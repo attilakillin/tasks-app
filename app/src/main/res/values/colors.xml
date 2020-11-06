@@ -7,6 +7,7 @@
     <color name="colorForeground">#E0E0E0</color>
     <color name="colorBackground">#F5F5F5</color>
     <color name="colorText">#424242</color>
+    <color name="colorGreen">#43a047</color>
 
     <color name="colorTextLight">#424242</color>
     <color name="colorTextDark">#E0E0E0</color>
