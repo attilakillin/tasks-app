@@ -33,4 +33,7 @@ interface CategoryDAO {
         )
         insertCategory(nocat)
     }
+
+    @Query("DELETE FROM categories WHERE cat_id != 0")
+    fun deleteEveryCategory()
 }

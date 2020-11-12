@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import hu.bme.jnsbbk.tasks.debug.CategoryGenerator
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
 import hu.bme.jnsbbk.tasks.debug.TaskGenerator
@@ -42,22 +44,39 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val controller = findNavController(R.id.nav_host_fragment)
-        if (controller.currentDestination!!.id == R.id.navItem_taskPagerFragment && item.itemId == android.R.id.home) {
-            if (root_drawerLayout.isDrawerOpen(root_navView))
-                root_drawerLayout.closeDrawers()
-            else
-                root_drawerLayout.openDrawer(GravityCompat.START)
-            return true
-        } else if (item.itemId == R.id.menuItem_darkMode) {
-            ThemePreferences.toggleDarkMode()
-            loadTheme()
-        } else if (item.itemId == R.id.menuItem_generate) {
-            thread {
-                val success = TaskGenerator.generateTask()
-                if (!success) runOnUiThread {
-                    Toast.makeText(this, "Can't generate random task: Please create a category first!",
-                        Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            android.R.id.home -> {
+                if (controller.currentDestination!!.id == R.id.navItem_taskPagerFragment) {
+                    if (root_drawerLayout.isDrawerOpen(root_navView))
+                        root_drawerLayout.closeDrawers()
+                    else
+                        root_drawerLayout.openDrawer(GravityCompat.START)
+                    return true
                 }
+            }
+            R.id.menuItem_darkMode -> {
+                ThemePreferences.toggleDarkMode()
+                loadTheme()
+            }
+            R.id.menuItem_generate -> {
+                thread {
+                    val success = TaskGenerator.generateTask()
+                    if (!success) runOnUiThread {
+                        Toast.makeText(
+                            this, "Can't generate random task: Please create a category first!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+            R.id.menuItem_catGenerate -> {
+                AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.default_category_generate_title))
+                    .setMessage(getString(R.string.default_category_generate_message))
+                    .setPositiveButton("OK") { _, _ -> CategoryGenerator.generateDefaultCategories(this) }
+                    .setNegativeButton("Cancel") { _, _ -> }
+                    .create()
+                    .show()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -76,7 +95,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         super.onBackPressed()
-
     }
 
     private fun setupNavigation() {

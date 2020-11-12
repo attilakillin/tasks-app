@@ -1,6 +1,8 @@
 package hu.bme.jnsbbk.tasks.fragments.category
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         val adapter = CategoryListAdapter(childFragmentManager)
         category_recyclerview.adapter = adapter
@@ -33,5 +36,10 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
             val dialog = CategoryEditorDialog(cat, CategoryEditorDialog.Mode.ADD)
             dialog.show(parentFragmentManager, null)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbarmenu_category, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 }
