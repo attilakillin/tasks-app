@@ -8,7 +8,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker
+import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
+import com.github.dhaval2404.colorpicker.model.ColorShape
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import hu.bme.jnsbbk.tasks.persistence.db.Category
@@ -48,25 +49,24 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
     }
 
     private fun initializeColorPickers(view: View) {
-        val cp = ColorPicker(activity)
-        cp.enableAutoClose()
+        val cp = MaterialColorPickerDialog
+            .Builder(requireActivity())
+            .setColorShape(ColorShape.SQAURE)
 
         view.cat_editor_lightcolor.setOnClickListener {
-            cp.color = Color.parseColor(category.color_light)
-            cp.setCallback { color ->
-                val value = String.format("#%06X", (0xFFFFFF and color))
-                category.color_light = value
-                view.cat_editor_lightcolor.setBackgroundColor(Color.parseColor(value))
+            cp.setColorRes(resources.getIntArray(R.array.categoryColorsLight).toList())
+            cp.setColorListener { _, colorHex ->
+                category.color_light = colorHex
+                view.cat_editor_lightcolor.setBackgroundColor(Color.parseColor(colorHex))
             }
             cp.show()
         }
 
         view.cat_editor_darkcolor.setOnClickListener {
-            cp.color = Color.parseColor(category.color_dark)
-            cp.setCallback { color ->
-                val value = String.format("#%06X", (0xFFFFFF and color))
-                category.color_dark = value
-                view.cat_editor_darkcolor.setBackgroundColor(Color.parseColor(value))
+            cp.setColorRes(resources.getIntArray(R.array.categoryColorsDark).toList())
+            cp.setColorListener { _, colorHex ->
+                category.color_dark = colorHex
+                view.cat_editor_darkcolor.setBackgroundColor(Color.parseColor(colorHex))
             }
             cp.show()
         }

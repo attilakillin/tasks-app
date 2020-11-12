@@ -11,4 +11,49 @@
 
     <color name="colorTextLight">#424242</color>
     <color name="colorTextDark">#E0E0E0</color>
+
+    <color name="categoryDefaultLight">#b0bec5</color>
+    <color name="categoryDefaultDark">#000a12</color>
+    
+    <array name="categoryColorsLight">
+        <item>#ef9a9a</item>
+        <item>#f48fb1</item>
+        <item>#ce93d8</item>
+        <item>#b39ddb</item>
+        <item>#9fa8da</item>
+        <item>#90caf9</item>
+        <item>#81d4fa</item>
+        <item>#80deea</item>
+        <item>#81cbc4</item>
+        <item>#a5d6a7</item>
+        <item>#c5e1a5</item>
+        <item>#e6ee9c</item>
+        <item>#fff59d</item>
+        <item>#ffe082</item>
+        <item>#ffcc80</item>
+        <item>#ffab91</item>
+        <item>#bcaaa4</item>
+        <item>#b0bec5</item>
+    </array>
+
+    <array name="categoryColorsDark">
+        <item>#7f0000</item>
+        <item>#560027</item>
+        <item>#12005e</item>
+        <item>#000063</item>
+        <item>#000051</item>
+        <item>#002171</item>
+        <item>#002f6c</item>
+        <item>#00363a</item>
+        <item>#00251a</item>
+        <item>#003300</item>
+        <item>#003d00</item>
+        <item>#524c00</item>
+        <item>#bc5100</item>
+        <item>#c43e00</item>
+        <item>#ac1900</item>
+        <item>#870000</item>
+        <item>#1b0000</item>
+        <item>#000a12</item>
+    </array>
 </resources>
