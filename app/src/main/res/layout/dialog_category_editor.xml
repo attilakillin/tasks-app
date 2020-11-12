@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="12dp"
     android:paddingHorizontal="12dp"
-    android:theme="@style/TasksThemeLight">
+    android:theme="@style/TasksTheme">
 
     <EditText
         android:id="@+id/cat_editor_title"

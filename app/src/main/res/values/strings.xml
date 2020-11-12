@@ -19,10 +19,14 @@
     <string name="light_color_type">Light</string>
     <string name="n_tasks_in_trash_plural">%d tasks in trash</string>
     <string name="n_tasks_in_trash_singular">%d task in trash</string>
+    <string name="n_tasks_completed_plural">%d tasks completed</string>
+    <string name="n_tasks_completed_singular">%d task completed</string>
     <string name="please_enter_title_toast">Please enter a title for your note!</string>
     <string name="please_choose_due_date_toast">Please choose the due date for your note!</string>
     <string name="preferences">hu.bme.jnsbbk.tasks.Preferences</string>
     <string name="save">Save</string>
     <string name="tasks">Tasks</string>
     <string name="trash">Trash</string>
+    <string name="delete_all">Delete all</string>
+    <string name="completed">Completed</string>
 </resources>

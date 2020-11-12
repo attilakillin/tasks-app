@@ -34,4 +34,7 @@ interface TaskDAO {
 
     @Query("UPDATE tasks SET is_completed = 1 WHERE task_id = :id")
     fun completeTask(id: Long)
+
+    @Query("UPDATE tasks SET is_in_trash = 1 WHERE is_completed = 1")
+    fun softDeleteCompletedTasks()
 }

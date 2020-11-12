@@ -36,7 +36,7 @@ class TaskTrashFragment : Fragment(R.layout.fragment_task_trash) {
                 .setTitle("Are you sure you want to empty the trash?")
                 .setMessage("This action is irreversible!")
                 .setPositiveButton("OK") { _, _ ->
-                    thread { AppDatabase.INSTANCE.taskDao().hardDeleteTrashedTasks(); }
+                    thread { AppDatabase.INSTANCE.taskDao().hardDeleteTrashedTasks() }
                 }
                 .setNegativeButton("Cancel") { _, _ -> Unit }
             builder.create().show()

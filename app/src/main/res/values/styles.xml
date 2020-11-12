@@ -1,5 +1,5 @@
 <resources>
-    <style name="TasksThemeLight" parent="Theme.AppCompat.Light">
+    <style name="TasksTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -27,7 +27,7 @@
         <item name="android:textColorPrimary">@color/colorText</item>
     </style>
 
-    <style name="TasksTheme.TaskListRowStyle" parent="TasksThemeLight">
+    <style name="TasksTheme.TaskListRowStyle" parent="TasksTheme">
         <item name="android:background">@drawable/rounded_corners</item>
     </style>
 

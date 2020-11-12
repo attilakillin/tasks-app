@@ -6,9 +6,9 @@
             android:icon="@drawable/ic_tasks_24px"
             android:title="@string/tasks"/>
         <item
-            android:id="@+id/menuItem_completed"
+            android:id="@+id/navItem_taskCompletedFragment"
             android:icon="@drawable/ic_completed_24px"
-            android:title="Completed"/>
+            android:title="@string/completed"/>
         <item
             android:id="@+id/navItem_taskTrashFragment"
             android:icon="@drawable/ic_delete_24px"
