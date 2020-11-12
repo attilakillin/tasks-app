@@ -5,8 +5,11 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
@@ -21,6 +24,9 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         ADD, EDIT
     }
 
+    private lateinit var dialog: AlertDialog
+    private var watcherAttached: Boolean = false
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = createView()
         val builder = AlertDialog.Builder(requireContext())
@@ -31,7 +37,18 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         else
             builder.setTitle(R.string.edit_category)
         builder.setView(view)
-        return builder.create()
+        dialog = builder.create()
+        return dialog
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!watcherAttached) {
+            watcherAttached = true
+            (dialog.findViewById(R.id.cat_editor_title) as EditText?)!!.doAfterTextChanged {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = !it!!.isEmpty()
+            }
+        }
     }
 
     private fun createView(): View {
@@ -73,9 +90,6 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
     }
 
     private fun saveCategory(view: View) {
-        category.name = view.cat_editor_title.text.toString()
-        if (category.name == "") return // TODO Check if empty
-
         val dao = AppDatabase.INSTANCE.categoryDao()
         when (mode) {
             Mode.ADD -> thread { dao.insertCategory(category) }
