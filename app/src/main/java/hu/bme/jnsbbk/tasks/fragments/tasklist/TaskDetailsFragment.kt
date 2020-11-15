@@ -59,6 +59,11 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                 setMode(Mode.EDIT)
             }
         }
+
+        parentFragmentManager.setFragmentResultListener("newEmptyTask", viewLifecycleOwner) { _, _ ->
+            clearFields()
+            setMode(Mode.EDIT)
+        }
     }
 
     private fun addEditorButtonListeners() {
