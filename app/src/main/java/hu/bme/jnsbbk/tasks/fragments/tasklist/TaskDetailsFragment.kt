@@ -134,11 +134,9 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
     }
 
     private fun setUpCategorySelector() {
-        val cats = AppDatabase.INSTANCE.categoryDao().getCategories()
-        cats.observe(viewLifecycleOwner, {
+        AppDatabase.INSTANCE.categoryDao().getCategories().observe(viewLifecycleOwner, {
             categories = it
-            val adapter = CategorySpinnerAdapter(requireContext(), it)
-            details_category_edit.adapter = adapter
+            details_category_edit.adapter = CategorySpinnerAdapter(requireContext(), it)
         })
     }
 
@@ -168,9 +166,8 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
     }
 
     private fun saveTask(): Boolean {
-        val idCopy = task_id
         val task = Task(
-            task_id = idCopy,
+            task_id = task_id,
             category = (details_category_edit.adapter as CategorySpinnerAdapter)
                 .getCategoryId(details_category_edit.selectedItemPosition),
             dueDate = details_dueDate_edit.text.toString(),
@@ -195,8 +192,8 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
 
             db.runInTransaction {
                 var exists = false
-                if (idCopy != null)
-                    exists = (dao.getTask(idCopy) != null)
+                if (task.task_id != null)
+                    exists = (dao.getTask(task.task_id) != null)
                 if (exists)
                     dao.updateTask(task)
                 else

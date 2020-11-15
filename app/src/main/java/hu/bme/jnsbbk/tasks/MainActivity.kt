@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemePreferences.initialize(this)
+        AppDatabase.initialize(this)
         loadTheme()
         setContentView(R.layout.activity_main)
-        AppDatabase.initialize(this)
         setupNavigation()
         thread { AppDatabase.INSTANCE.categoryDao().checkAndInsertNoCategory() }
     }

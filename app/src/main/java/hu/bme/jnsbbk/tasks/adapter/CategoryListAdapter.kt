@@ -61,8 +61,7 @@ class CategoryListAdapter(private val fm: FragmentManager) :
             val cat = holder.category!!
             confirmThenDo(holder.itemView.context) {
                 thread {
-                    val dao = AppDatabase.INSTANCE.categoryDao()
-                    dao.deleteCategory(cat)
+                    AppDatabase.INSTANCE.categoryDao().deleteCategory(cat)
                 }
             }
         }

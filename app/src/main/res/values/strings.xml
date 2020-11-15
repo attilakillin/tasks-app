@@ -32,4 +32,9 @@
     <string name="generate_default_categories">Generate default categories</string>
     <string name="default_category_generate_message">WARNING: This button is only here for debug purposes. Clicking OK will erase every existing category, and generate a predefined set of default categories. Are you sure you want to do this?</string>
     <string name="default_category_generate_title">Erase everything and generate default categories?</string>
+    <string name="empty_trash_alert_title">Are you sure you want to empty the trash?</string>
+    <string name="empty_trash_alert_message">This action is irreversible!</string>
+    <string name="ok">OK</string>
+    <string name="restore">Restore</string>
+    <string name="delete">Delete</string>
 </resources>

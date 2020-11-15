@@ -33,18 +33,18 @@ class TaskTrashFragment : Fragment(R.layout.fragment_task_trash) {
     private fun setEmptyTrashListener() {
         trash_deleteButton.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
-                .setTitle("Are you sure you want to empty the trash?")
-                .setMessage("This action is irreversible!")
-                .setPositiveButton("OK") { _, _ ->
+                .setTitle(getString(R.string.empty_trash_alert_title))
+                .setMessage(getString(R.string.empty_trash_alert_message))
+                .setPositiveButton(getString(R.string.ok)) { _, _ ->
                     thread { AppDatabase.INSTANCE.taskDao().hardDeleteTrashedTasks() }
                 }
-                .setNegativeButton("Cancel") { _, _ -> Unit }
+                .setNegativeButton(getString(R.string.cancel)) { _, _ -> Unit }
             builder.create().show()
         }
     }
 
     private fun showDeletePopup(id: Long) {
-        val choices = arrayOf("Restore", "Delete")
+        val choices = arrayOf(getString(R.string.restore), getString(R.string.delete))
         val builder = AlertDialog.Builder(requireContext())
             .setItems(choices) {_, which ->
                 when (which) {

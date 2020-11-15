@@ -16,13 +16,13 @@ class CategorySpinnerAdapter(context: Context, private val cats: List<Category>)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = super.getView(position, convertView, parent) as TextView
-        view.setText(cats[position].name)
+        view.text = cats[position].name
         return view
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = super.getDropDownView(position, convertView, parent) as TextView
-        view.setText(cats[position].name)
+        view.text = cats[position].name
 
         val dpToPxScale = context.resources.displayMetrics.density
         val pxPadding = (10 * dpToPxScale + 0.5f).toInt()

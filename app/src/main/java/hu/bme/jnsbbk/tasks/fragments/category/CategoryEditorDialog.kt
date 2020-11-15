@@ -27,15 +27,14 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
     private var watcherAttached: Boolean = false
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = createView()
         val builder = AlertDialog.Builder(requireContext())
-            .setPositiveButton(R.string.save) {_, _ -> saveCategory(view) }
+            .setPositiveButton(R.string.save) {_, _ -> saveCategory() }
             .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+            .setView(createView())
         if (mode == Mode.ADD)
             builder.setTitle(R.string.add_new_category)
         else
             builder.setTitle(R.string.edit_category)
-        builder.setView(view)
         dialog = builder.create()
         return dialog
     }
@@ -45,7 +44,7 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         if (!watcherAttached) {
             watcherAttached = true
             (dialog.findViewById(R.id.cat_editor_title) as EditText?)!!.doAfterTextChanged {
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = !it!!.isEmpty()
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = it!!.isNotEmpty()
             }
         }
     }
@@ -88,7 +87,7 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
         }
     }
 
-    private fun saveCategory(view: View) {
+    private fun saveCategory() {
         val dao = AppDatabase.INSTANCE.categoryDao()
         when (mode) {
             Mode.ADD -> thread { dao.insertCategory(category) }

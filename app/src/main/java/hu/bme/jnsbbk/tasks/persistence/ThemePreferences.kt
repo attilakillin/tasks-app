@@ -8,9 +8,7 @@ object ThemePreferences {
     var darkMode: Boolean = false
         private set(value) {
             field = value
-            val editor = prefs.edit()
-            editor.putBoolean("dark_mode", value)
-            editor.apply()
+            prefs.edit().putBoolean("dark_mode", value).apply()
         }
 
     private lateinit var prefs: SharedPreferences

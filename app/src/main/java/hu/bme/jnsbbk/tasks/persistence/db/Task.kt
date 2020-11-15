@@ -14,7 +14,7 @@ import androidx.room.*
             Index(value = ["due_date"])
         ])
 data class Task (
-    @PrimaryKey(autoGenerate = true) var task_id: Long? = null,
+    @PrimaryKey(autoGenerate = true) val task_id: Long? = null,
     @ColumnInfo(name = "category_fk") val category: Long?,
     @ColumnInfo(name = "due_date") val dueDate: String,
     @ColumnInfo(name = "title") val title: String,

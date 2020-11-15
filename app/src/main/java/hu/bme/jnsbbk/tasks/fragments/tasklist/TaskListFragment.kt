@@ -23,7 +23,6 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         list_recyclerView.adapter = adapter
         list_recyclerView.layoutManager = LinearLayoutManager(context)
 
-
         AppDatabase.INSTANCE.taskInfoDao().getActiveTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
