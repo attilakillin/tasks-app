@@ -14,7 +14,7 @@
     <color name="colorGreen">#43a047</color>
 
     <color name="categoryDefaultLight">#b0bec5</color>
-    <color name="categoryDefaultDark">#000a12</color>
+    <color name="categoryDefaultDark">#263238</color>
     
     <array name="categoryColorsLight">
         <item>#ef9a9a</item>

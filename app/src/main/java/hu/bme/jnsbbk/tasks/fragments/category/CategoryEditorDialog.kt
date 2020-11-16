@@ -88,6 +88,7 @@ class CategoryEditorDialog(private val category: Category, private val mode: Mod
     }
 
     private fun saveCategory() {
+        category.name = (dialog.findViewById(R.id.cat_editor_title) as EditText?)!!.text.toString()
         val dao = AppDatabase.INSTANCE.categoryDao()
         when (mode) {
             Mode.ADD -> thread { dao.insertCategory(category) }
