@@ -90,6 +90,7 @@ class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
                 details_doneSave_button.setOnClickListener {
                     val id = task_id
                     if (id != null) thread { AppDatabase.INSTANCE.taskDao().completeTask(id) }
+                    Toast.makeText(requireContext(), getString(R.string.task_completed_toast), Toast.LENGTH_SHORT).show()
                     clearFields()
                     setMode(Mode.EDIT)
                     parentFragmentManager.setFragmentResult("switchToList", Bundle.EMPTY)

@@ -40,9 +40,21 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/taskRow_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskRow_category"
         tools:text="Ezt csináld meg!" />
+
+    <ImageView
+        android:id="@+id/taskRow_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/taskRow_title"
+        app:layout_constraintTop_toTopOf="@id/taskRow_title"
+        app:layout_constraintBottom_toBottomOf="@id/taskRow_title"
+        android:scaleType="centerInside"
+        android:src="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

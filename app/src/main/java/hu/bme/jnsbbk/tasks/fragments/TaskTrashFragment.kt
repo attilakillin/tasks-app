@@ -8,30 +8,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.jnsbbk.tasks.R
 import hu.bme.jnsbbk.tasks.adapter.TaskListAdapter
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
-import kotlinx.android.synthetic.main.fragment_task_trash.*
+import kotlinx.android.synthetic.main.fragment_task_secondary.*
 import kotlin.concurrent.thread
 
-class TaskTrashFragment : Fragment(R.layout.fragment_task_trash) {
+class TaskTrashFragment : Fragment(R.layout.fragment_task_secondary) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = TaskListAdapter(::showDeletePopup)
-        trash_recyclerView.adapter = adapter
-        trash_recyclerView.layoutManager = LinearLayoutManager(context)
+        secondary_recyclerView.adapter = adapter
+        secondary_recyclerView.layoutManager = LinearLayoutManager(context)
 
         AppDatabase.INSTANCE.taskInfoDao().getDeletedTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
             if (it.size != 1)
-                trash_trashednumberText.text = getString(R.string.n_tasks_in_trash_plural, it.size)
+                secondary_ntasksText.text = getString(R.string.n_tasks_in_trash_plural, it.size)
             else
-                trash_trashednumberText.text = getString(R.string.n_tasks_in_trash_singular, it.size)
+                secondary_ntasksText.text = getString(R.string.n_tasks_in_trash_singular, it.size)
         })
 
+        secondary_deleteButton.text = getString(R.string.empty_trash)
         setEmptyTrashListener()
     }
 
     private fun setEmptyTrashListener() {
-        trash_deleteButton.setOnClickListener {
+        secondary_deleteButton.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.empty_trash_alert_title))
                 .setMessage(getString(R.string.empty_trash_alert_message))

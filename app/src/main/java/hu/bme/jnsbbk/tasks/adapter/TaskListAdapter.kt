@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
         val category: TextView = itemView.taskRow_category
         val dueDate: TextView = itemView.taskRow_dueDate
         val title: TextView = itemView.taskRow_title
+        val icon: ImageView = itemView.taskRow_icon
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,6 +42,12 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
         val color = if (ThemePreferences.darkMode) task.color_dark else task.color_light
         val bg: GradientDrawable = holder.itemView.background as GradientDrawable
         bg.color = ColorStateList.valueOf(Color.parseColor(color))
+
+        if (task.is_completed) {
+            holder.icon.setImageResource(R.drawable.ic_completed_24px)
+        } else {
+            holder.icon.setImageResource(android.R.color.transparent)
+        }
 
         holder.itemView.setOnClickListener { listener(task.task_id) }
     }
