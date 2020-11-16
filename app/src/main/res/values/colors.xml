@@ -7,10 +7,11 @@
     <color name="colorForeground">#E0E0E0</color>
     <color name="colorBackground">#F5F5F5</color>
     <color name="colorText">#424242</color>
-    <color name="colorGreen">#43a047</color>
-
     <color name="colorTextLight">#424242</color>
     <color name="colorTextDark">#E0E0E0</color>
+
+    <color name="colorFab">#FFF176</color>
+    <color name="colorGreen">#43a047</color>
 
     <color name="categoryDefaultLight">#b0bec5</color>
     <color name="categoryDefaultDark">#000a12</color>
@@ -37,23 +38,23 @@
     </array>
 
     <array name="categoryColorsDark">
-        <item>#7f0000</item>
-        <item>#560027</item>
-        <item>#12005e</item>
-        <item>#000063</item>
-        <item>#000051</item>
-        <item>#002171</item>
-        <item>#002f6c</item>
-        <item>#00363a</item>
-        <item>#00251a</item>
-        <item>#003300</item>
-        <item>#003d00</item>
-        <item>#524c00</item>
-        <item>#bc5100</item>
-        <item>#c43e00</item>
-        <item>#ac1900</item>
-        <item>#870000</item>
-        <item>#1b0000</item>
-        <item>#000a12</item>
+        <item>#661010</item>
+        <item>#660b3b</item>
+        <item>#360f66</item>
+        <item>#221366</item>
+        <item>#151c66</item>
+        <item>#082d66</item>
+        <item>#013966</item>
+        <item>#006064</item>
+        <item>#004d40</item>
+        <item>#1b5e20</item>
+        <item>#32661d</item>
+        <item>#665d12</item>
+        <item>#66350a</item>
+        <item>#662c00</item>
+        <item>#662400</item>
+        <item>#661d06</item>
+        <item>#3e2723</item>
+        <item>#263238</item>
     </array>
 </resources>

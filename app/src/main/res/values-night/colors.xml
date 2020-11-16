@@ -7,8 +7,9 @@
     <color name="colorForeground">#292929</color>
     <color name="colorBackground">#121212</color>
     <color name="colorText">#D0D0D0</color>
-    <color name="colorGreen">#1B5320</color>
-
     <color name="colorTextLight">#424242</color>
     <color name="colorTextDark">#E0E0E0</color>
+
+    <color name="colorFab">#CABF45</color>
+    <color name="colorGreen">#1B5320</color>
 </resources>
