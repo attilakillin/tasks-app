@@ -5,7 +5,7 @@
     <string name="cancel">Cancel</string>
     <string name="categories">Categories</string>
     <string name="category">Category:</string>
-    <string name="dark_color_type">Dark</string>
+    <string name="dark_color_type">Dark theme</string>
     <string name="dark_mode">Dark mode</string>
     <string name="done">Done!</string>
     <string name="due_date">Due date:</string>
@@ -16,7 +16,7 @@
     <string name="enter_description">Enter description</string>
     <string name="enter_title">Enter title</string>
     <string name="generate_test_task">Generate test task</string>
-    <string name="light_color_type">Light</string>
+    <string name="light_color_type">Light theme</string>
     <string name="n_tasks_in_trash_plural">%d tasks in trash</string>
     <string name="n_tasks_in_trash_singular">%d task in trash</string>
     <string name="n_tasks_completed_plural">%d tasks completed</string>
@@ -39,4 +39,6 @@
     <string name="delete">Delete</string>
     <string name="add_task">Add task</string>
     <string name="task_completed_toast">Task completed!</string>
+    <string name="generate_overdue_task">Generate overdue task</string>
+    <string name="some_tasks_are_overdue">Some tasks are overdue</string>
 </resources>

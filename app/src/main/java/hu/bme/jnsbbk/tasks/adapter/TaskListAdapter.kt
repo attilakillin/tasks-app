@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.jnsbbk.tasks.R
+import hu.bme.jnsbbk.tasks.Today
 import hu.bme.jnsbbk.tasks.callback.TaskInfoDiffCallback
 import hu.bme.jnsbbk.tasks.persistence.db.TaskInfo
 import hu.bme.jnsbbk.tasks.persistence.ThemePreferences
@@ -45,7 +46,9 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
 
         if (task.is_completed) {
             holder.icon.setImageResource(R.drawable.ic_completed_24px)
-        } else {
+        } else if (task.due_date < Today.date && !task.is_in_trash) {
+            holder.icon.setImageResource(R.drawable.ic_overdue_24px)
+        }else {
             holder.icon.setImageResource(android.R.color.transparent)
         }
 

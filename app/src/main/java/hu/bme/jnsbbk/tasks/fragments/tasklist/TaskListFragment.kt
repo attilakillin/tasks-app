@@ -19,6 +19,11 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
             parentFragmentManager.setFragmentResult("switchToDetails", Bundle.EMPTY)
         }
 
+        add_task_fab.setOnClickListener {
+            parentFragmentManager.setFragmentResult("newEmptyTask", Bundle.EMPTY)
+            parentFragmentManager.setFragmentResult("switchToDetails", Bundle.EMPTY)
+        }
+
         val adapter = TaskListAdapter(listener)
         list_recyclerView.adapter = adapter
         list_recyclerView.layoutManager = LinearLayoutManager(context)
@@ -26,10 +31,5 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         AppDatabase.INSTANCE.taskInfoDao().getActiveTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
-
-        add_task_fab.setOnClickListener {
-            parentFragmentManager.setFragmentResult("newEmptyTask", Bundle.EMPTY)
-            parentFragmentManager.setFragmentResult("switchToDetails", Bundle.EMPTY)
-        }
     }
 }

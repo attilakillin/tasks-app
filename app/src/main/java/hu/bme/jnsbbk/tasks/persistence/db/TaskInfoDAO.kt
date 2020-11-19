@@ -14,4 +14,7 @@ interface TaskInfoDAO {
 
     @Query("SELECT * FROM taskinfo WHERE is_in_trash = 1")
     fun getDeletedTasks(): LiveData<List<TaskInfo>>
+
+    @Query("SELECT * FROM taskinfo WHERE is_completed = 0 AND is_in_trash = 0 AND due_date < :date")
+    fun getOverdueTasks(date: String): LiveData<List<TaskInfo>>
 }

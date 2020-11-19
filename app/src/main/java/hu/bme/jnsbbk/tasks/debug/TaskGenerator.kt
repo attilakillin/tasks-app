@@ -39,4 +39,25 @@ object TaskGenerator {
         }
         return success
     }
+
+    fun generateOverdueTask(): Boolean {
+        var success = true
+        val db = AppDatabase.INSTANCE
+        db.runInTransaction {
+            val cats = db.categoryDao().getCategoryIDs()
+            if (cats.isEmpty()) {
+                success = false
+                return@runInTransaction
+            }
+            val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
+            val task = Task(
+                category = cats.get(cat_idx)!!,
+                dueDate = "2020-11-11",
+                title = "An overdue task",
+                description = "This task was generated as an overdue task"
+            )
+            db.taskDao().insertTask(task)
+        }
+        return success
+    }
 }

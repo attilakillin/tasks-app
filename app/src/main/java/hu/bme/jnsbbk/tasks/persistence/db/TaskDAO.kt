@@ -37,4 +37,7 @@ interface TaskDAO {
 
     @Query("UPDATE tasks SET is_in_trash = 1 WHERE is_completed = 1")
     fun softDeleteCompletedTasks()
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE is_completed = 0 AND is_in_trash = 0 AND due_date < :date")
+    fun getOverdueTasksAmount(date: String): Long
 }
