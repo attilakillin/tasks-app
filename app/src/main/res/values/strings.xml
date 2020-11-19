@@ -41,4 +41,5 @@
     <string name="task_completed_toast">Task completed!</string>
     <string name="generate_overdue_task">Generate overdue task</string>
     <string name="some_tasks_are_overdue">Some tasks are overdue</string>
+    <string name="choose_due_date">Choose due date</string>
 </resources>
