@@ -53,8 +53,9 @@ class CategoryListAdapter(private val fm: FragmentManager) :
     private fun setListeners(holder: ViewHolder) {
         holder.itemView.setOnClickListener {
             if (holder.category!!.cat_id!! == 0L) return@setOnClickListener // No category behavior
-            val dialog = CategoryEditorDialog(holder.category!!, CategoryEditorDialog.Mode.EDIT)
-            dialog.show(fm, null)
+            CategoryEditorDialog.category = holder.category!!
+            CategoryEditorDialog.mode = CategoryEditorDialog.Mode.EDIT
+            CategoryEditorDialog().show(fm, null)
         }
 
         holder.itemView.catRow_deleteButton.setOnClickListener {

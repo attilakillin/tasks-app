@@ -18,9 +18,14 @@ import hu.bme.jnsbbk.tasks.persistence.db.Category
 import kotlinx.android.synthetic.main.dialog_category_editor.view.*
 import kotlin.concurrent.thread
 
-class CategoryEditorDialog(private val category: Category, private val mode: Mode) : DialogFragment() {
+class CategoryEditorDialog : DialogFragment() {
     enum class Mode {
         ADD, EDIT
+    }
+
+    companion object {
+        lateinit var category: Category
+        var mode: Mode = Mode.ADD
     }
 
     private lateinit var dialog: AlertDialog
