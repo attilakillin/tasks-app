@@ -21,10 +21,7 @@ class TaskTrashFragment : Fragment(R.layout.fragment_task_secondary) {
 
         AppDatabase.INSTANCE.taskInfoDao().getDeletedTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
-            if (it.size != 1)
-                secondary_ntasksText.text = getString(R.string.n_tasks_in_trash_plural, it.size)
-            else
-                secondary_ntasksText.text = getString(R.string.n_tasks_in_trash_singular, it.size)
+            secondary_ntasksText.text =resources.getQuantityString(R.plurals.n_tasks_in_trash, it.size, it.size)
         })
 
         secondary_deleteButton.text = getString(R.string.empty_trash)

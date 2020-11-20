@@ -14,16 +14,13 @@ class TaskCompletedFragment : Fragment(R.layout.fragment_task_secondary) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = TaskListAdapter({})
+        val adapter = TaskListAdapter {}
         secondary_recyclerView.adapter = adapter
         secondary_recyclerView.layoutManager = LinearLayoutManager(context)
 
         AppDatabase.INSTANCE.taskInfoDao().getCompletedTasks().observe(viewLifecycleOwner, {
             adapter.submitList(it)
-            if (it.size != 1)
-                secondary_ntasksText.text = getString(R.string.n_tasks_completed_plural, it.size)
-            else
-                secondary_ntasksText.text = getString(R.string.n_tasks_completed_singular, it.size)
+            secondary_ntasksText.text = resources.getQuantityString(R.plurals.n_tasks_completed, it.size, it.size)
         })
 
         secondary_deleteButton.text = getString(R.string.delete_all)

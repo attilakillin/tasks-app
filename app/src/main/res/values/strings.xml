@@ -2,7 +2,6 @@
     <string name="app_name">Tasks</string>
     <string name="add_new_category">Add new category</string>
     <string name="add_task">Add task</string>
-    <string name="back">Back</string>
     <string name="cancel">Cancel</string>
     <string name="categories">Categories</string>
     <string name="category">Category:</string>
@@ -28,10 +27,14 @@
     <string name="generate_overdue_task">Generate overdue task</string>
     <string name="generate_test_task">Generate test task</string>
     <string name="light_color_type">Light theme</string>
-    <string name="n_tasks_in_trash_plural">%d tasks in trash</string>
-    <string name="n_tasks_in_trash_singular">%d task in trash</string>
-    <string name="n_tasks_completed_plural">%d tasks completed</string>
-    <string name="n_tasks_completed_singular">%d task completed</string>
+    <plurals name="n_tasks_in_trash">
+        <item quantity="one">%d task in trash</item>
+        <item quantity="other">%d tasks in trash</item>
+    </plurals>
+    <plurals name="n_tasks_completed">
+        <item quantity="one">%d task completed</item>
+        <item quantity="other">%d tasks completed</item>
+    </plurals>
     <string name="new_category">New Category</string>
     <string name="ok">OK</string>
     <string name="overdue_task_generate_error">Can\'t generate overdue task: Please create a category first!</string>
@@ -42,7 +45,7 @@
     <string name="random_task_generate_error">Can\'t generate random task: Please create a category first!</string>
     <string name="restore">Restore</string>
     <string name="save">Save</string>
-    <string name="some_tasks_are_overdue">Some tasks are overdue</string>
+    <string name="some_tasks_are_overdue">Some tasks are overdue:</string>
     <string name="task_completed_toast">Task completed!</string>
     <string name="tasks">Tasks</string>
     <string name="trash">Trash</string>

@@ -13,7 +13,6 @@ import hu.bme.jnsbbk.tasks.Today
 import hu.bme.jnsbbk.tasks.adapter.TaskListAdapter
 import hu.bme.jnsbbk.tasks.persistence.db.AppDatabase
 import kotlinx.android.synthetic.main.dialog_overdue_tasks.view.*
-import java.util.*
 
 class OverdueTasksFragment : DialogFragment() {
 
@@ -30,7 +29,7 @@ class OverdueTasksFragment : DialogFragment() {
 
     private fun createView(): View {
         val view: View = requireActivity().layoutInflater.inflate(R.layout.dialog_overdue_tasks, null)
-        view.overdue_recyclerview.adapter = TaskListAdapter({})
+        view.overdue_recyclerview.adapter = TaskListAdapter {}
         view.overdue_recyclerview.layoutManager = LinearLayoutManager(context)
 
         return view

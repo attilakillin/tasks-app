@@ -28,9 +28,9 @@ object TaskGenerator {
                 success = false
                 return@runInTransaction
             }
-            val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
+            val idx = ThreadLocalRandom.current().nextInt(0, cats.size)
             val task = Task(
-                category = cats[cat_idx]!!,
+                category = cats[idx]!!,
                 dueDate = "%d-%02d-%02d".format(y, m, d),
                 title = builder.toString(),
                 description = "Placeholder description"
@@ -49,9 +49,9 @@ object TaskGenerator {
                 success = false
                 return@runInTransaction
             }
-            val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
+            val idx = ThreadLocalRandom.current().nextInt(0, cats.size)
             val task = Task(
-                category = cats[cat_idx]!!,
+                category = cats[idx]!!,
                 dueDate = "2020-11-11",
                 title = "An overdue task",
                 description = "This task was generated as an overdue task"
