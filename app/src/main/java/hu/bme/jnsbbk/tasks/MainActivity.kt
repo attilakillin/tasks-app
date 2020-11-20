@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     val success = TaskGenerator.generateTask()
                     if (!success) runOnUiThread {
                         Toast.makeText(
-                            this, "Can't generate random task: Please create a category first!",
+                            this, getString(R.string.random_task_generate_error),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -85,8 +85,8 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.default_category_generate_title))
                     .setMessage(getString(R.string.default_category_generate_message))
-                    .setPositiveButton("OK") { _, _ -> CategoryGenerator.generateDefaultCategories(this) }
-                    .setNegativeButton("Cancel") { _, _ -> }
+                    .setPositiveButton(getString(R.string.ok)) { _, _ -> CategoryGenerator.generateDefaultCategories(this) }
+                    .setNegativeButton(getString(R.string.cancel)) { _, _ -> }
                     .create()
                     .show()
             }
@@ -95,12 +95,12 @@ class MainActivity : AppCompatActivity() {
                     val success = TaskGenerator.generateOverdueTask()
                     if (!success) runOnUiThread {
                         Toast.makeText(
-                            this, "Can't generate overdue task: Please create a category first!",
+                            this, getString(R.string.overdue_task_generate_error),
                             Toast.LENGTH_SHORT
                         ).show()
                     } else runOnUiThread {
                         Toast.makeText(
-                            this, "Overdue task generated. Restart app to see overdue popup!",
+                            this, getString(R.string.overdue_task_generate_success),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

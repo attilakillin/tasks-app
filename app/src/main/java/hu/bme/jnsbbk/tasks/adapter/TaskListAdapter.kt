@@ -25,6 +25,7 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
         val dueDate: TextView = itemView.taskRow_dueDate
         val title: TextView = itemView.taskRow_title
         val icon: ImageView = itemView.taskRow_icon
+        var id: Long? = null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +35,7 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task = getItem(position).copy()
+        val task = getItem(position)
 
         holder.category.text = task.category
         holder.dueDate.text = task.due_date
@@ -52,6 +53,8 @@ class TaskListAdapter(private val listener: (Long) -> Unit) :
             holder.icon.setImageResource(android.R.color.transparent)
         }
 
-        holder.itemView.setOnClickListener { listener(task.task_id) }
+        holder.id = task.task_id
+
+        holder.itemView.setOnClickListener { listener(holder.id!!) }
     }
 }

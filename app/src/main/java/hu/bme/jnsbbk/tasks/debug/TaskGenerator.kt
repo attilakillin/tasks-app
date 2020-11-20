@@ -10,8 +10,8 @@ object TaskGenerator {
         val cal: Calendar = Calendar.getInstance()
         val gcal = GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
         val y = ThreadLocalRandom.current().nextInt(cal.get(Calendar.YEAR) + 1, cal.get(Calendar.YEAR) + 3)
-        val m = ThreadLocalRandom.current().nextInt(gcal.getActualMinimum(Calendar.MONTH),
-                                                    gcal.getActualMaximum(Calendar.MONTH))
+        val m = ThreadLocalRandom.current().nextInt(gcal.getActualMinimum(Calendar.MONTH) + 1,
+                                                    gcal.getActualMaximum(Calendar.MONTH) + 1)
         val d = ThreadLocalRandom.current().nextInt(gcal.getActualMinimum(Calendar.DAY_OF_MONTH),
                                                     gcal.getActualMaximum(Calendar.DAY_OF_MONTH))
 
@@ -30,7 +30,7 @@ object TaskGenerator {
             }
             val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
             val task = Task(
-                category = cats.get(cat_idx)!!,
+                category = cats[cat_idx]!!,
                 dueDate = "%d-%02d-%02d".format(y, m, d),
                 title = builder.toString(),
                 description = "Placeholder description"
@@ -51,7 +51,7 @@ object TaskGenerator {
             }
             val cat_idx = ThreadLocalRandom.current().nextInt(0, cats.size)
             val task = Task(
-                category = cats.get(cat_idx)!!,
+                category = cats[cat_idx]!!,
                 dueDate = "2020-11-11",
                 title = "An overdue task",
                 description = "This task was generated as an overdue task"

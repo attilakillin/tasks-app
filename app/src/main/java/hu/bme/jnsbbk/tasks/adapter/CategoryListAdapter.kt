@@ -52,7 +52,7 @@ class CategoryListAdapter(private val fm: FragmentManager) :
 
     private fun setListeners(holder: ViewHolder) {
         holder.itemView.setOnClickListener {
-            if (holder.category!!.cat_id!! == 0L) return@setOnClickListener // No category behavior
+            if (holder.category!!.cat_id!! == 0L) return@setOnClickListener // Behavior of "No category"
             CategoryEditorDialog.category = holder.category!!
             CategoryEditorDialog.mode = CategoryEditorDialog.Mode.EDIT
             CategoryEditorDialog().show(fm, null)

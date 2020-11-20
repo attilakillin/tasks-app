@@ -28,7 +28,7 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
 
         categories_add_button.setOnClickListener {
             val cat = Category(
-                name = "New Category",
+                name = getString(R.string.new_category),
                 color_light = resources.getString(0+R.color.categoryDefaultLight),
                 color_dark = resources.getString(0+R.color.categoryDefaultDark)
             )

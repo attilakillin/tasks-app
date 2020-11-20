@@ -42,4 +42,8 @@
     <string name="generate_overdue_task">Generate overdue task</string>
     <string name="some_tasks_are_overdue">Some tasks are overdue</string>
     <string name="choose_due_date">Choose due date</string>
+    <string name="new_category">New Category</string>
+    <string name="random_task_generate_error">Can\'t generate random task: Please create a category first!</string>
+    <string name="overdue_task_generate_error">Can\'t generate overdue task: Please create a category first!</string>
+    <string name="overdue_task_generate_success">Overdue task generated. Restart app to see overdue popup!</string>
 </resources>
